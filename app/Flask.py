@@ -4,14 +4,15 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
-from bokeh_plot import LoadFromSQL, bk_plot
+from bokeh_plot import LoadFromSQL, bk_plot2
 from bokeh.resources import Resources
 from bokeh.templates import RESOURCES
+from bokeh.embed import components
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '73ng89rgdsn32qywxaz'
-app.config['DATABASE_LOCATION'] = '''
-/home/alexander/Projects/Home-automation/data.db'''
+app.config['DATABASE_LOCATION'] = '''/home/alexander/Projects/Home-automation/data.db'''
 bootstrap = Bootstrap(app)
 
 
@@ -25,7 +26,8 @@ def bild(range=48):
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
 def bokeh_bild(range=48):
-    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION']))
+    print(app.config['DATABASE_LOCATION'])
+    data = bk_plot2(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3'))
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
         js_raw=resources.js_raw,
@@ -33,11 +35,13 @@ def bokeh_bild(range=48):
         js_files=resources.js_files,
         css_files=resources.css_files,
     )
+    plot_script, plot_div = components(
+        data, resources)
     #return render_template('bild.html')
     return render_template(
         'bild.html',
-        script=data[0],
-        div=data[1],
+        script=plot_script,
+        div=plot_div,
         resources=plot_resources)
 
 
