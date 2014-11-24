@@ -1,4 +1,4 @@
-from bokeh.plotting import image_rgba, line, annular_wedge, grid, show, output_file, hold
+from bokeh.plotting import line, hold
 from bokeh.widgets import HBox
 
 import sqlite3 as lite
@@ -27,16 +27,6 @@ def ColorPicker():
         yield i
 
 
-class SensorPicker(object):
-    def __init__(self, sensorlist):
-        self.sensorlist = sensorlist
-
-    def gen(self):
-        for i in self.sensorlist:
-            self.current_value = i
-            yield i
-
-
 def LoadFromSQL(interval, db, *sensors):
     conn = lite.connect(db)
     cur = conn.cursor()
@@ -61,13 +51,13 @@ def LoadFromSQL(interval, db, *sensors):
     return data_dict
 
 
-def bk_plot2(data):
+def bk_plot(data):
     tid = time.time()
     color_picker = ColorPicker()
     #Resolution
     res = 100
     #pt.figure(x_axis_type='datetime')
-    hold()
+    hold(True)
     lines = HBox(
         children=
         [
@@ -80,38 +70,13 @@ def bk_plot2(data):
                 )
             for sensor in data]
         )
-    '''for sensor in data:
-        colour = color_picker.__next__()
-        line([i[0] for i in data[sensor][::res]], [i[1] for i in data[sensor][::res]], legend=sensor, color=colour)
-    '''
-    #plotten = line([i[0] for i in data[::res]], [i[1] for i in data[::res]])
+    hold(False)
     print(
         '{} seconds to  plot'.format(time.time()-tid)
     )
-    '''script, div = components(pt, CDN)
-    return script, div'''
     return lines
 
-
-def bk_plot_to_screen(data):
-    tid = time.time()
-    color_picker = ColorPicker()
-    #Resolution
-    res = 100
-    output_file("iris.html")
-    #figure(x_axis_type='datetime')
-    #hold()
-    for sensor in data:
-        colour = color_picker.__next__()
-        hold()
-        line([i[0] for i in data[sensor][::res]], [i[1] for i in data[sensor][::res]], legend=sensor, color=colour)
-    print(
-        '{} seconds to  plot'.format(time.time()-tid)
-    )
-    show()
 
 if __name__ == '__main__':
     db_loc = '''/home/alexander/Projects/Home-automation/data.db'''
     data = LoadFromSQL(5184000, db_loc, 'VS1_GT1', 'VS1_GT3')
-    bk_plot_to_screen(data)
-    #pass
