@@ -1,4 +1,4 @@
-from bokeh.plotting import line, hold
+from bokeh.plotting import line, hold, figure
 from bokeh.widgets import HBox
 
 import sqlite3 as lite
@@ -56,7 +56,7 @@ def bk_plot(data):
     color_picker = ColorPicker()
     #Resolution
     res = 100
-    #pt.figure(x_axis_type='datetime')
+    figure()
     hold(True)
     lines = HBox(
         children=

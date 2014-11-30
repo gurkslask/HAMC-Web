@@ -13,7 +13,7 @@ from bokeh.embed import components
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '73ng89rgdsn32qywxaz'
 app.config['DATABASE_LOCATION'] = '''/home/pi/Projects/HAMC/data.db'''
-app.config['PICKLE_LOCATION'] = '''/home/pi/Projects/HAMC/shared_dict'''
+PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
 
@@ -22,7 +22,7 @@ bootstrap = Bootstrap(app)
 def bokeh_bild(range=48):
     print(app.config['DATABASE_LOCATION'])
     data = None
-    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3'))
+    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT2'))
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
         js_raw=resources.js_raw,
@@ -74,7 +74,7 @@ def interact():
 
 def load_shared_dict():
     '''loads the shared dict'''
-    with open(app['PICKLE_LOCATION'], 'rb') as f:
+    with open(PICKLE_LOCATION, 'rb') as f:
         return pickle.load(f)
 
 
