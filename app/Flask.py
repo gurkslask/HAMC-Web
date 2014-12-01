@@ -72,6 +72,25 @@ def interact():
         ute_temp_form=ute_temp_form)
 
 
+class OpenCloseValves(Form):
+    """Form for OpenCloseValves"""
+    TimeOpen = StringField('Time for the valve to open')
+    TimeClose = StringField('Time for the valve to close')
+    submit = SubmitField('Submit')
+
+
+@app.route('/SV1', methods=['GET', 'POST'])
+def SV1():
+    OpenCloseValvesForm = OpenCloseValves()
+    shared_dict = load_shared_dict()
+    return render_template(
+        'valve.html',
+        TimeOpen=shared_dict['VS1_SV1']['Time_Open'],
+        TimeClose=shared_dict['VS1_SV1']['Time_Close'],
+        OpenCloseValvesForm=OpenCloseValvesForm
+        )
+
+
 def load_shared_dict():
     '''loads the shared dict'''
     with open(PICKLE_LOCATION, 'rb') as f:
