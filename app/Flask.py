@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 import pickle
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
@@ -8,21 +8,21 @@ from bokeh_plot import LoadFromSQL, bk_plot
 from bokeh.resources import Resources
 from bokeh.templates import RESOURCES
 from bokeh.embed import components
+import random
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '73ng89rgdsn32qywxaz'
-app.config['DATABASE_LOCATION'] = '''/home/pi/Projects/HAMC/data.db'''
-PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
+app.config['DATABASE_LOCATION'] = '''/home/alexander/Projects/HAMC/data.db'''
+PICKLE_LOCATION = '''/home/alexander/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
 
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
-def bokeh_bild(range=48):
+def bokeh_bild(range=4800):
     print(app.config['DATABASE_LOCATION'])
-    data = None
-    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT2'))
+    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT2', 'VS1_GT3'))
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
         js_raw=resources.js_raw,
@@ -91,12 +91,48 @@ def SV1():
         )
 
 
+@app.route('/VS1_CP1', methods=['GET', 'POST'])
+def VS1_CP1():
+    shared_dict = load_shared_dict()
+    return render_template(
+        'CP.html',
+        Name=shared_dict['VS1_CP1']['Name']
+        )
+
+
+@app.route('/_JsonSharedDict')
+def JsonSharedDict():
+    '''Jsonifies the shared dict'''
+    return jsonify(result=load_shared_dict())
+
+
 def load_shared_dict():
     '''loads the shared dict'''
     with open(PICKLE_LOCATION, 'rb') as f:
         return pickle.load(f)
 
 
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
+
+@app.route('/_add_numbers2')
+def add_numbers2():
+    return jsonify(result=random.randint(1, 10))
+
+
+@app.route('/ajax')
+def ajax():
+    return render_template('ajax.html')
+
+
+@app.route('/ajax2')
+def ajax2():
+    return render_template('ajax2.html')
+
 if __name__ == "__main__":
-    #app.run(host='0.0.0.0', debug=True)
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
+    #app.run(host='0.0.0.0')

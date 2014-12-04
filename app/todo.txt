@@ -1,0 +1,3 @@
+Skriva form för pump och ventil
+Skriva form för trend
+blueprint struktur
