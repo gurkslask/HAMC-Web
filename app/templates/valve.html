@@ -29,12 +29,33 @@
 
 {%block content %}
 
+<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
+</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script>
+$(document).ready(function(){
+  setInterval(function(){
+    $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict', {}, function(data) {
+      $("#OPEN_DO").text(data.result.IOvariables.b_SV_OPEN_DO.Value),
+      $("#CLOSE_DO").text(data.result.IOvariables.b_SV_CLOSE_DO.Value)
+      })
+  }, 3000);
+});
+</script>
 <ul>
     <li>
         Time open: {{TimeOpen}}
     </li>
     <li>
         Time close: {{TimeClose}}
+    </li>
+    <li>
+        Opens: <p id="OPEN_DO"> ? </p>
+    </li>
+    <li>
+        Close: <p id="CLOSE_DO"> ? </p>
     </li>
 </ul>
 
