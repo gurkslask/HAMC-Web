@@ -38,7 +38,17 @@
 $(document).ready(function(){
   setInterval(function(){
     $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict', {}, function(data) {
-      $("#OPEN_DO").text(data.result.IOVariables.b_SV_OPEN_DO.Value),
+        switch (data.result.IOVariables.b_SV_OPEN_DO.Value) {
+            case 0:
+                $("#OPEN_DO").text("Stänger");
+                break;
+            case 1:
+                $("#OPEN_DO").text("Öppnar");
+                break;
+            case default:
+                $("#OPEN_DO").text("Något fel!");
+                break;
+        }
       $("#CLOSE_DO").text(data.result.IOVariables.b_SV_CLOSE_DO.Value)
       })
   }, 3000);

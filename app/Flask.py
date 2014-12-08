@@ -13,8 +13,8 @@ import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '73ng89rgdsn32qywxaz'
-app.config['DATABASE_LOCATION'] = '''/home/pi/Projects/HAMC/data.db'''
-PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
+app.config['DATABASE_LOCATION'] = '''/home/alexander/Projects/HAMC/data.db'''
+PICKLE_LOCATION = '''/home/alexander/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
 
@@ -121,7 +121,7 @@ def add_numbers():
 
 @app.route('/_add_numbers2')
 def add_numbers2():
-    return jsonify(result=random.randint(1, 10))
+    return jsonify(result=random.randint(1, 2))
 
 
 @app.route('/ajax')

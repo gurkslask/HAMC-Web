@@ -40,7 +40,18 @@
 $(document).ready(function(){
   setInterval(function(){
     $.getJSON($SCRIPT_ROOT + '/_add_numbers2', {}, function(data) {
-      $("#test").text(data.result);})
+      $("#test").text(data.result+1);
+      var x = data.result;
+      switch (x) {
+        case 1:
+          $("#test3").text("Ett!");
+          break;
+        default:
+          $("#test3").text(x);
+          break;
+
+      }
+      $("#test2").text(x);})
   }, 3000);
 });
 </script>
@@ -49,6 +60,7 @@ $(document).ready(function(){
 
 <h2>This is a heading</h2>
 <p id="test2">This is a paragraph.</p>
+<p id="test3">This is a paragraph.</p>
 <p id="test">This is another paragraph.</p>
 <button>Click me</button>
 
