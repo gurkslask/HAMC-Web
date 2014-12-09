@@ -13,8 +13,8 @@ import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '73ng89rgdsn32qywxaz'
-app.config['DATABASE_LOCATION'] = '''/home/alexander/Projects/HAMC/data.db'''
-PICKLE_LOCATION = '''/home/alexander/Projects/HAMC/shared_dict'''
+app.config['DATABASE_LOCATION'] = '''/home/pi/Projects/HAMC/data.db'''
+PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
 
@@ -22,7 +22,7 @@ bootstrap = Bootstrap(app)
 @app.route('/bokeh_bild/<range>')
 def bokeh_bild(range=4800):
     print(app.config['DATABASE_LOCATION'])
-    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT2', 'VS1_GT3'))
+    data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3'))
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
         js_raw=resources.js_raw,
@@ -79,7 +79,7 @@ class OpenCloseValves(Form):
     submit = SubmitField('Submit')
 
 
-@app.route('/SV1', methods=['GET', 'POST'])
+@app.route('/VS1_SV1', methods=['GET', 'POST'])
 def SV1():
     OpenCloseValvesForm = OpenCloseValves()
     shared_dict = load_shared_dict()
@@ -87,7 +87,9 @@ def SV1():
         'valve.html',
         TimeOpen=shared_dict['VS1_SV1']['Time_Open'],
         TimeClose=shared_dict['VS1_SV1']['Time_Close'],
-        OpenCloseValvesForm=OpenCloseValvesForm
+        OpenCloseValvesForm=OpenCloseValvesForm,
+        dObject='IOVariables',
+        dValve='VS1_SV1'
         )
 
 
@@ -96,20 +98,31 @@ def VS1_CP1():
     shared_dict = load_shared_dict()
     return render_template(
         'CP.html',
-        Name=shared_dict['VS1_CP1']['Name']
+        dObject='IOVariables',
+        dCP='VS1_CP1'
         )
 
 
 @app.route('/_JsonSharedDict')
-def JsonSharedDict():
+@app.route('/_JsonSharedDict/<dObject>')
+def JsonSharedDict(dObject=None):
     '''Jsonifies the shared dict'''
-    return jsonify(result=load_shared_dict())
+    if dObject is None:
+        return jsonify(result=load_shared_dict())
+    else:
+        return jsonify(result=load_shared_dict(dObject))
 
 
-def load_shared_dict():
+def load_shared_dict(dObject=None):
     '''loads the shared dict'''
     with open(PICKLE_LOCATION, 'rb') as f:
-        return pickle.load(f)
+        if dObject is None:
+            return pickle.load(f)
+        else:
+            try:
+                return pickle.load(f)[dObject]
+            except Exception as e:
+                print('{} does not exist in the shared dictionary'.format(e))
 
 
 @app.route('/_add_numbers')

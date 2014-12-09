@@ -32,40 +32,40 @@
 <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
 </script>
 <script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 <script>
+//Autoupdate function
 $(document).ready(function(){
-  setInterval(function(){
-    $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict', {}, function(data) {
-        switch (data.result.IOVariables.b_SV_OPEN_DO.Value) {
-            case 0:
-                $("#OPEN_DO").text("Stänger");
-                break;
-            case 1:
-                $("#OPEN_DO").text("Öppnar");
-                break;
-            case default:
-                $("#OPEN_DO").text("Något fel!");
-                break;
-        }
-      $("#CLOSE_DO").text(data.result.IOVariables.b_SV_CLOSE_DO.Value)
-      })
-  }, 3000);
+    setInterval(function(){
+        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dObject|tojson|safe }}, {}, function(data) {
+                var opens = data.result.b_{{ dValve|safe }}_OPEN_DO.Value;
+                var closes = data.result.b_{{ dValve|safe }}_CLOSE_DO.Value;
+                if (opens == 0 && closes == 0) {
+                    $("#State").text("No movement");
+                    $("#State").css("color","black");
+                } else if (opens == 1 && closes == 0) {
+                    $("#State").text("Opens");
+                    $("#State").css("color","Green");
+                    $("#State").css("background-color", "Black");
+                } else if (opens == 0 && closes == 1) {
+                    $("#State").text("Closes");
+                    $("#State").css("color","Green");
+                    $("#State").css("background-color", "Black");
+                }
+        })
+    }, 3000);
 });
 </script>
 <ul>
     <li>
-        Time open: {{TimeOpen}}
+        Time open : {{TimeOpen}}
     </li>
     <li>
         Time close: {{TimeClose}}
     </li>
     <li>
-        Opens: <p id="OPEN_DO"> ? </p>
-    </li>
-    <li>
-        Close: <p id="CLOSE_DO"> ? </p>
+        State: <p id="State"> ? </p>
     </li>
 </ul>
 

@@ -36,21 +36,33 @@
 </script>
 <script>
 $(document).ready(function(){
-  setInterval(function(){
-    $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict', {}, function(data) {
-      $("#T1").text(data.result.VS1_CP1.T1),
-      $("#T2").text(data.result.VS1_CP1.T2),
-      $("#T3").text(data.result.VS1_CP1.T3),
-      $("#S1").text(data.result.VS1_CP1.S1),
-      $("#S2").text(data.result.VS1_CP1.S2),
-      $("#S3").text(data.result.VS1_CP1.S3)
-      })
+    setInterval(function(){
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dCP|tojson|safe }}, {}, function(data) {
+          $("#T1").text(data.result.T1),
+          $("#T2").text(data.result.T2),
+          $("#T3").text(data.result.T3),
+          $("#S1").text(data.result.S1),
+          $("#S2").text(data.result.S2),
+          $("#S3").text(data.result.S3)
+          }
+      )
   }, 3000);
 });
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    setInterval(function(){
+        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dObject|tojson|safe }}, {}, function(data) {
+          $("#state").text(data.result.b_{{ dCP|safe }}_DO.Value)
+          }
+      )
+  }, 3000);
+});
+
+</script>
 <ul>
     <li>
-        {{ Name }}
+        {{ dCP }}
     </li>
     <li>
         T1:<p id="T1">?</p>
@@ -69,6 +81,9 @@ $(document).ready(function(){
     </li>
     <li>
         S3:<p id="S3">?</p>
+    </li>
+    <li>
+        State:<p id="state">?</p>
     </li>
 </ul>
 

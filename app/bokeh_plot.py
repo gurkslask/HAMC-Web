@@ -54,7 +54,7 @@ def LoadFromSQL(interval, db, *sensors):
     return data_dict
 
 
-def bk_plot2(data):
+def bk_plot(data):
     tid = time.time()
     color_picker = ColorPicker()
     #Resolution
@@ -80,7 +80,7 @@ def bk_plot2(data):
     return lines
 
 
-def bk_plot(data):
+def bk_plot2(data):
     tid = time.time()
     color_picker = ColorPicker()
     #Resolution
