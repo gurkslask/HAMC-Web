@@ -21,7 +21,6 @@ bootstrap = Bootstrap(app)
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
 def bokeh_bild(range=4800):
-    print(app.config['DATABASE_LOCATION'])
     data = bk_plot(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3'))
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
@@ -95,7 +94,6 @@ def SV1():
 
 @app.route('/VS1_CP1', methods=['GET', 'POST'])
 def VS1_CP1():
-    shared_dict = load_shared_dict()
     return render_template(
         'CP.html',
         dObject='IOVariables',
@@ -147,5 +145,5 @@ def ajax2():
     return render_template('ajax2.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
-    #app.run(host='0.0.0.0')
+    #app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')
