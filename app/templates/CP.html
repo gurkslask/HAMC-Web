@@ -53,7 +53,16 @@ $(document).ready(function(){
 $(document).ready(function(){
     setInterval(function(){
         $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dObject|tojson|safe }}, {}, function(data) {
-          $("#state").text(data.result.b_{{ dCP|safe }}_DO.Value)
+          var Value = data.result.b_{{ dCP|safe }}_DO.Value;
+          if (Value == 1) {
+            $("#state").text("True");
+            $("#State").css("color","Green");
+          }
+          else if (Value == 0) {
+            $("#state").text("False");
+            $("#State").css("color","Black");
+          }
+          
           }
       )
   }, 3000);

@@ -54,7 +54,8 @@ def LoadFromSQL(interval, db, *sensors):
     return data_dict
 
 
-def bk_plot(data):
+def bk_plot_timeline(data):
+    #This is a plot that takes time on the x-axis
     tid = time.time()
     color_picker = ColorPicker()
     #Resolution
@@ -80,19 +81,43 @@ def bk_plot(data):
     return lines
 
 
-def bk_plot2(data):
+def bk_plot(data):
+    #This is a regular plot
+    tid = time.time()
+    color_picker = ColorPicker()
+    figure()
+    hold(True)
+    lines = HBox(
+        children=
+        [
+            line(
+                i,
+                data[i],
+                color=color_picker.__next__(),
+                )
+            for i in data
+        ]
+        )
+    hold(False)
+    print(
+        '{} seconds to  plot'.format(time.time()-tid)
+    )
+    return lines
+
+
+def test_bk_plot(data):
+    #This is a plot that only plots random numbers, for testing
     tid = time.time()
     color_picker = ColorPicker()
     #Resolution
-    res = 100
     #figure()
     hold(True)
     lines = HBox(
         children=
         [
             line(
-                [random.randint(1,100) for i in range(1, 100)],
-                [random.randint(1,100) for i in range(101, 200)],
+                [random.randint(1, 100) for i in range(1, 100)],
+                [random.randint(1, 100) for i in range(101, 200)],
                 color=color_picker.__next__()
                 )
             for i in range(3)]
