@@ -131,6 +131,10 @@ def JsonSharedDict(dObject=None):
 def load_shared_dict(dObject=None):
     '''loads the shared dict'''
     with open(PICKLE_LOCATION, 'rb') as f:
+        for i in f:
+            if 'trend_func' in i:
+                del i['trend_func']
+
         if dObject is None:
             return pickle.load(f)
         else:
