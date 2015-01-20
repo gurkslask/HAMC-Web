@@ -87,17 +87,13 @@ def bk_plot(data):
     color_picker = ColorPicker()
     figure()
     hold(True)
-    lines = HBox(
-        children=
-        [
-            line(
-                i,
-                data[i],
+    x = [i for i in data]
+    y = [data[i] for i in data]
+    lines = line(
+                x,
+                y,
                 color=color_picker.__next__(),
                 )
-            for i in data
-        ]
-        )
     hold(False)
     print(
         '{} seconds to  plot'.format(time.time()-tid)

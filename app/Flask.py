@@ -131,10 +131,6 @@ def JsonSharedDict(dObject=None):
 def load_shared_dict(dObject=None):
     '''loads the shared dict'''
     with open(PICKLE_LOCATION, 'rb') as f:
-        for i in f:
-            if 'trend_func' in i:
-                del i['trend_func']
-
         if dObject is None:
             return pickle.load(f)
         else:
@@ -166,5 +162,5 @@ def ajax2():
     return render_template('ajax2.html')
 
 if __name__ == "__main__":
-    #app.run(host='0.0.0.0', debug=True)
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
+    #app.run(host='0.0.0.0')
