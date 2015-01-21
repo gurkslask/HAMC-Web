@@ -119,6 +119,15 @@ class OpenCloseValves(Form):
 def SV1():
     OpenCloseValvesForm = OpenCloseValves()
     shared_dict = load_shared_dict()
+    if OpenCloseValvesForm.validate_on_submit():
+        save_value('.'.join(
+            'IOVariables', 'VS1_SV1', 'Time_Open'),
+            OpenCloseValvesForm.TimeOpen.data
+        )
+        save_value('.'.join(
+            'IOVariables', 'VS1_SV1', 'Time_Close'),
+            OpenCloseValvesForm.TimeClose.data
+        )
     return render_template(
         'valve.html',
         TimeOpen=shared_dict['VS1_SV1']['Time_Open'],
@@ -171,26 +180,16 @@ def load_shared_dict(dObject=None):
             print('{} does not exist in the shared dictionary'.format(e))
 
 
-@app.route('/_add_numbers')
-def add_numbers():
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    return jsonify(result=a + b)
+def save_value(key, value):
+    shared_dict[key] = value
+    shared_dict['update_from_flask'] = True
+    save_shared_dict()
 
 
-@app.route('/_add_numbers2')
-def add_numbers2():
-    return jsonify(result=random.randint(1, 2))
+def save_shared_dict():
+    with open(app.config['PICKLE_LOCATION'], 'wb') as f:
+        pickle.dump(shared_dict, f, protocol=2)
 
-
-@app.route('/ajax')
-def ajax():
-    return render_template('ajax.html')
-
-
-@app.route('/ajax2')
-def ajax2():
-    return render_template('ajax2.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=app.config['DEBUG'])
