@@ -14,8 +14,14 @@ import os
 configs = {
     'pi_config': {
         'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
-        'PICKLE_LOCATION': '''/home/pi/HAMC/shared_dict''',
+        'PICKLE_LOCATION': '''/home/pi/Projects/HAMC/shared_dict''',
         'DEBUG': False,
+        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+    },
+    'pi_test': {
+        'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
+        'PICKLE_LOCATION': '''/home/pi/Projects/HAMC/shared_dict''',
+        'DEBUG': True,
         'SECRET_KEY': '73ng89rgdsn32qywxaz'
     },
     'testing_config': {
@@ -154,7 +160,7 @@ def load_shared_dict(dObject=None):
         shared_dict['update_from_main'] = False
         with open(app.config['PICKLE_LOCATION'], 'wb') as f:
             #And write it down again
-            pickle.dump(shared_dict, f)
+            pickle.dump(shared_dict, f, protocol=2)
     #Return the dict as requested
     if dObject is None:
         return shared_dict
