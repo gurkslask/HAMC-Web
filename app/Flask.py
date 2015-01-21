@@ -9,11 +9,25 @@ from bokeh.resources import Resources
 from bokeh.templates import RESOURCES
 from bokeh.embed import components
 import random
+import os
 
+configs = {
+    'pi_config': {
+        'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
+        'PICKLE_LOCATION': '''/home/pi/HAMC/shared_dict''',
+        'DEBUG': False,
+        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+    },
+    'testing_config': {
+        'DATABASE_LOCATION': '''/home/alexander/prg/SQL/data.db''',
+        'PICKLE_LOCATION': '''/home/alexander/prg/SQL/shared_dict''',
+        'DEBUG': True,
+        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+    }
+}
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '73ng89rgdsn32qywxaz'
-app.config['DATABASE_LOCATION'] = '''/home/pi/Projects/HAMC/data.db'''
+app.config.update(configs[os.environ['FLASK_CONFIG']] or configs['pi_config'])
 PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
@@ -105,7 +119,9 @@ def SV1():
         TimeClose=shared_dict['VS1_SV1']['Time_Close'],
         OpenCloseValvesForm=OpenCloseValvesForm,
         dObject='IOVariables',
-        dValve='VS1_SV1'
+        dValve='VS1_SV1',
+        dSensor='VS1_GT1',
+        dSP='VS1_Setpoint'
         )
 
 
@@ -130,14 +146,23 @@ def JsonSharedDict(dObject=None):
 
 def load_shared_dict(dObject=None):
     '''loads the shared dict'''
-    with open(PICKLE_LOCATION, 'rb') as f:
-        if dObject is None:
-            return pickle.load(f)
-        else:
-            try:
-                return pickle.load(f)[dObject]
-            except Exception as e:
-                print('{} does not exist in the shared dictionary'.format(e))
+    with open(app.config['PICKLE_LOCATION'], 'rb') as f:
+        #Open the shared dict and load it temporary
+        shared_dict = pickle.load(f)
+    if shared_dict['update_from_main']:
+        #Falsify the flag
+        shared_dict['update_from_main'] = False
+        with open(app.config['PICKLE_LOCATION'], 'wb') as f:
+            #And write it down again
+            pickle.dump(shared_dict, f)
+    #Return the dict as requested
+    if dObject is None:
+        return shared_dict
+    else:
+        try:
+            return shared_dict[dObject]
+        except Exception as e:
+            print('{} does not exist in the shared dictionary'.format(e))
 
 
 @app.route('/_add_numbers')
@@ -162,5 +187,5 @@ def ajax2():
     return render_template('ajax2.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=app.config['DEBUG'])
     #app.run(host='0.0.0.0')

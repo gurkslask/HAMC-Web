@@ -38,9 +38,11 @@
 //Autoupdate function
 $(document).ready(function(){
     setInterval(function(){
-        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dObject|tojson|safe }}, {}, function(data) {
-                var opens = data.result.b_{{ dValve|safe }}_OPEN_DO.Value;
-                var closes = data.result.b_{{ dValve|safe }}_CLOSE_DO.Value;
+        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict', {}, function(data) {
+                var temp = data.result.{{ dSensor|safe }};
+                var SP = data.result.{{dSP|safe}};
+                var opens = data.result.{{ dObject|safe}}.b_{{ dValve|safe }}_OPEN_DO.Value;
+                var closes = data.result.{{ dObject|safe}}.b_{{ dValve|safe }}_CLOSE_DO.Value;
                 if (opens == 0 && closes == 0) {
                     $("#State").text("No movement");
                     $("#State").css("color","black");
@@ -53,6 +55,9 @@ $(document).ready(function(){
                     $("#State").css("color","Green");
                     $("#State").css("background-color", "Black");
                 }
+
+                $("#Sensor").text(temp);
+                $("#Setpoint").text(SP);
         })
     }, 3000);
 });
@@ -66,6 +71,12 @@ $(document).ready(function(){
     </li>
     <li>
         State: <p id="State"> ? </p>
+    </li>
+    <li>
+        Temp GT1: <p id="Sensor"> ? </p>
+    </li>
+    <li> 
+        Setpoint: <p id="Setpoint"> ? </p>
     </li>
 </ul>
 
