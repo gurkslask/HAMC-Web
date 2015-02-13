@@ -62,6 +62,25 @@ def bk_plot_timeline(data):
     res = 100
     figure()
     hold(True)
+    lines = []
+    for sensor in data:
+        x = []
+        y = []
+        for values in data[sensor][::res]:
+            x.append(values[0])
+            y.append(values[1])
+        lines.append(
+            line(
+                x,
+                y,
+                legend=sensor,
+                color=color_picker.__next__(),
+                x_axis_type='datetime'
+            )
+        )
+
+    bk_object = HBox(children=lines)
+    '''
     lines = HBox(
         children=
         [
@@ -74,6 +93,7 @@ def bk_plot_timeline(data):
                 )
             for sensor in data]
         )
+    '''
     hold(False)
     print(
         '{} seconds to  plot'.format(time.time()-tid)
