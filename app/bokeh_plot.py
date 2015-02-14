@@ -98,7 +98,7 @@ def bk_plot_timeline(data):
     print(
         '{} seconds to  plot'.format(time.time()-tid)
     )
-    return lines
+    return bk_object
 
 
 def bk_plot(data):
