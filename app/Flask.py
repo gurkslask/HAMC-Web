@@ -41,7 +41,8 @@ bootstrap = Bootstrap(app)
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
 def bokeh_bild(range=4800):
-    data = bk_plot_timeline(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3'))
+    data = bk_plot_timeline(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3', 'VS1_GT2', 'VS1_Setpoint'))
+    print(data)
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
         js_raw=resources.js_raw,
