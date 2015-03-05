@@ -29,6 +29,7 @@ def ColorPicker():
 
 
 def LoadFromSQL(interval, db, *sensors):
+    SQL_time = time.time()
     conn = lite.connect(db)
     cur = conn.cursor()
     data_dict = {}
@@ -47,10 +48,11 @@ def LoadFromSQL(interval, db, *sensors):
 
             data_dict[sensor] = cur.fetchall()
     for sensor in data_dict:
-        data_dict[sensor].sort()
+        # data_dict[sensor].sort()
         data_dict[sensor] = [list(
             [dt.datetime.fromtimestamp(int(i[0])), i[1]])
             for i in data_dict[sensor]]
+    print('Time to fetch SQL data: {}'.format(time.time() - SQL_time))
     return data_dict
 
 
