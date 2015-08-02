@@ -2,7 +2,7 @@
 {% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %} Hejsan svejsan {%endblock%}
+{% block title %} Cirkulationspump 1 {%endblock%}
 
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
@@ -37,7 +37,7 @@
 <script>
 $(document).ready(function(){
     setInterval(function(){
-      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dCP|tojson|safe }}, {}, function(data) {
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{dObject|tojson|safe}}, {}, function(data) {
           $("#T1").text(data.result.T1),
           $("#T2").text(data.result.T2),
           $("#T3").text(data.result.T3),
@@ -52,15 +52,15 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){
     setInterval(function(){
-        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{ dObject|tojson|safe }}, {}, function(data) {
-          var Value = data.result.b_{{ dCP|safe }}_DO.Value;
+        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{dObject|tojson|safe}}, {}, function(data) {
+          var Value = data.result.Out;
           if (Value == 1) {
             $("#state").text("True");
-            $("#State").css("color","Green");
+            $("#state").css("color","Green");
           }
           else if (Value == 0) {
             $("#state").text("False");
-            $("#State").css("color","Black");
+            $("#state").css("color","Black");
           }
           
           }
