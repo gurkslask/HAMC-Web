@@ -1,0 +1,100 @@
+<!doctype html>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Cirkulationspump 1 {%endblock%}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"> Toggle navigation </span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+            </button>
+            <a class="navbar-brand" href="/"> Hej </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/"></a>Home</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block content %}
+
+<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
+</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script>
+$(document).ready(function(){
+    setInterval(function(){
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{dObject|tojson|safe}}, {}, function(data) {
+          $("#T1").text(data.result.T1),
+          $("#T2").text(data.result.T2),
+          $("#T3").text(data.result.T3),
+          $("#S1").text(data.result.S1),
+          $("#S2").text(data.result.S2),
+          $("#S3").text(data.result.S3)
+          }
+      )
+  }, 3000);
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    setInterval(function(){
+        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{dObject|tojson|safe}}, {}, function(data) {
+          var Value = data.result.Out;
+          if (Value == 1) {
+            $("#state").text("True");
+            $("#state").css("color","Green");
+          }
+          else if (Value == 0) {
+            $("#state").text("False");
+            $("#state").css("color","Black");
+          }
+          
+          }
+      )
+  }, 3000);
+});
+
+</script>
+<ul>
+    <li>
+        {{ dCP }}
+    </li>
+    <li>
+        T1:<p id="T1">?</p>
+    </li>
+    <li>
+        T2:<p id="T2">?</p>
+    </li>
+    <li>
+        T3:<p id="T3">?</p>
+    </li>
+    <li>
+        S1:<p id="S1">?</p>
+    </li>
+    <li>
+        S2:<p id="S2">?</p>
+    </li>
+    <li>
+        S3:<p id="S3">?</p>
+    </li>
+    <li>
+        State:<p id="state">?</p>
+    </li>
+</ul>
+
+
+{%endblock%}

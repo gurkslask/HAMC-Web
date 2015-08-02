@@ -31,7 +31,7 @@ configs = {
         'PICKLE_LOCATION': '''/home/alexander/prg/SQL/shared_dict''',
         'DEBUG': True,
         'SECRET_KEY': '73ng89rgdsn32qywxaz',
-        'CONNECT_TO_SOCKET_METHOD': 'internal'
+        'CONNECT_TO_SOCKET_METHOD': 'external'
     }
 }
 
@@ -156,6 +156,14 @@ def VS1_CP1():
         dCP='VS1_CP1'
         )
 
+@app.route('/VS1_CP1_new', methods=['GET', 'POST'])
+def VS1_CP1_new():
+    return render_template(
+        'CP_new.html',
+        dObject='VS1_CP1',
+        dCP='VS1_CP1'
+        )
+
 
 @app.route('/_JsonSharedDict')
 @app.route('/_JsonSharedDict/<dObject>')
@@ -165,6 +173,16 @@ def JsonSharedDict(dObject=None):
         return jsonify(result=load_shared_dict())
     else:
         return jsonify(result=load_shared_dict(dObject))
+
+@app.route('/_JsonSharedDict_new')
+@app.route('/_JsonSharedDict_new/<dObject>')
+def JsonSharedDict_new(dObject=None):
+    '''Jsonifies the shared dict'''
+    if dObject is None:
+        return render_template('404.html'), 404
+    else:
+        return jsonify(result=call_server({'r':[str(dObject)]}))
+
 
 @app.route('/test_internal')
 def test_internal():
