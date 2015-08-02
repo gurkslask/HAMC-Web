@@ -16,19 +16,22 @@ configs = {
         'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
         'PICKLE_LOCATION': '''/home/pi/Projects/HAMC/shared_dict''',
         'DEBUG': False,
-        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+        'SECRET_KEY': '73ng89rgdsn32qywxaz',
+        'CONNECT_TO_SOCKET_METHOD': 'external'
     },
     'pi_test': {
         'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
         'PICKLE_LOCATION': '''/home/pi/Projects/HAMC/shared_dict''',
         'DEBUG': True,
-        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+        'SECRET_KEY': '73ng89rgdsn32qywxaz',
+        'CONNECT_TO_SOCKET_METHOD': 'external'
     },
     'testing_config': {
         'DATABASE_LOCATION': '''/home/alexander/prg/SQL/data.db''',
         'PICKLE_LOCATION': '''/home/alexander/prg/SQL/shared_dict''',
         'DEBUG': True,
-        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+        'SECRET_KEY': '73ng89rgdsn32qywxaz',
+        'CONNECT_TO_SOCKET_METHOD': 'internal'
     }
 }
 
@@ -37,6 +40,10 @@ app.config.update(configs[os.environ['FLASK_CONFIG']] or configs['pi_config'])
 PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
+if app.config['CONNECT_TO_SOCKET_METHOD'] == 'external':
+    from connect_to_socket import call_server
+elif app.config['CONNECT_TO_SOCKET_METHOD'] == 'internal':
+    from connect_to_socket_internal import call_server
 
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
@@ -159,6 +166,11 @@ def JsonSharedDict(dObject=None):
     else:
         return jsonify(result=load_shared_dict(dObject))
 
+@app.route('/test_internal')
+def test_internal():
+    call_server({'w':[['test1', 44]]})
+    return 'test internal{}'.format(call_server({'r':['test1', 'test2']}))
+
 
 def load_shared_dict(dObject=None):
     '''loads the shared dict'''
@@ -179,6 +191,12 @@ def load_shared_dict(dObject=None):
             return shared_dict[dObject]
         except Exception as e:
             print('{} does not exist in the shared dictionary'.format(e))
+
+
+def load_values_from_controller(read_list = '', write_list = ''):
+    read_message = "'r': read_list" if read_list != None else ''
+    write_message = "'w': write_list" if write_list != None else ''
+    call_server(''.join([read_message, write_message]))
 
 
 def save_value(key, value):
