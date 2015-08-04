@@ -164,6 +164,12 @@ def VS1_CP1_new():
         dCP='VS1_CP1'
         )
 
+@app.route('/VS1_GT1', methods=['GET', 'POST'])
+def VS1_GT1():
+    return render_template(
+        'GT.html',
+        dObject='VS1_GT1'
+    )
 
 @app.route('/_JsonSharedDict')
 @app.route('/_JsonSharedDict/<dObject>')
