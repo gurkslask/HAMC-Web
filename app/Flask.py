@@ -156,19 +156,29 @@ def VS1_CP1():
         dCP='VS1_CP1'
         )
 
+class PumpForm(Form):
+    """docstring for NameForm"""
+    LarmDelay = StringField('LarmDelay', validators=[Required()])
+    submit = SubmitField('Submit')
+
 @app.route('/VS1_CP1_new', methods=['GET', 'POST'])
 def VS1_CP1_new():
+    VS1_CP1_LarmDelay_Form = PumpForm()
+    if VS1_CP1_LarmDelay_Form.validate_on_submit():
+        print('Heyo! {}'.format(VS1_CP1_LarmDelay_Form.LarmDelay.data))
     return render_template(
         'CP_new.html',
         dObject='VS1_CP1',
-        dCP='VS1_CP1'
+        dCP='VS1_CP1',
+        LarmDelayForm=VS1_CP1_LarmDelay_Form
         )
+
 
 @app.route('/VS1_GT1', methods=['GET', 'POST'])
 def VS1_GT1():
     return render_template(
         'GT.html',
-        dObject='VS1_GT1'
+        dObject='VS1_GT1_Class'
     )
 
 @app.route('/_JsonSharedDict')

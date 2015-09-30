@@ -55,3 +55,11 @@ $(document).ready(function(){
 
 
 {%endblock%}
+$(document).ready(function(){
+    setInterval(function(){
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dObject|tojson|safe}}, {}, function(data) {
+          $("#PV").text(data.result.{{dObject|safe}}.PV)
+          }
+      )
+  }, 3000);
+});
