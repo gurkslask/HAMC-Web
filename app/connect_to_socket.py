@@ -1,8 +1,10 @@
-__author__ = 'alexander'
 
 import pickle
 import socket
 import sys
+
+__author__ = 'alexander'
+
 
 # Echo client program
 def call_server(message):
@@ -37,5 +39,5 @@ def call_server(message):
 if __name__ == '__main__':
     command_str = sys.argv[1].replace('\n', '').split(':')
     print(command_str)
-    command = {command_str[0]:[command_str[1]]}
+    command = {command_str[0]: [command_str[1]]}
     print(call_server(command))
