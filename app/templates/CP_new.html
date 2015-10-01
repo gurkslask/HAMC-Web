@@ -99,7 +99,11 @@ $(document).ready(function(){
         State:<p id="state">?</p>
     </li>
 </ul>
+<button onclick="PopUpForm()">#</button>
+<p id="demo"></p>
+<script type="text/javascript">
+  {{ wtf.quick_form(LarmDelayForm)}}
+</script>
 
-{{ wtf.quick_form(LarmDelayForm)}}
 
 {%endblock%}
