@@ -1,5 +1,4 @@
-from bokeh.plotting import line, hold, figure
-from bokeh.widgets import HBox
+from bokeh.plotting import line, hold, figure, HBox
 
 import sqlite3 as lite
 import datetime as dt
@@ -61,26 +60,27 @@ def bk_plot_timeline(data):
     tid = time.time()
     color_picker = ColorPicker()
     #Resolution
-    res = 100
-    figure()
-    hold(True)
-    lines = HBox(
-        children=
-        [
-            line(
-                [i[0] for i in data[sensor][::res]],
-                [i[1] for i in data[sensor][::res]],
-                legend=sensor,
-                color=color_picker.__next__(),
-                x_axis_type='datetime'
-                )
-            for sensor in data]
+    res = 10
+    p1 = figure(tools="resize, reset, box_zoom, crosshair")
+    p1.title = 'Temperatures!'
+    for sensor in data:
+        x = []
+        y = []
+        for values in data[sensor][::res]:
+            x.append(values[0])
+            y.append(values[1])
+        p1.line(
+            x,
+            y,
+            legend=sensor,
+            color=color_picker.__next__(),
+            x_axis_type='datetime'
         )
-    hold(False)
+    bk_object = HBox(p1)
     print(
         '{} seconds to  plot'.format(time.time()-tid)
     )
-    return lines
+    return bk_object
 
 
 def bk_plot(data):

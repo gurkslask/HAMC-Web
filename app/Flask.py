@@ -16,19 +16,22 @@ configs = {
         'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
         'PICKLE_LOCATION': '''/home/pi/Projects/HAMC/shared_dict''',
         'DEBUG': False,
-        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+        'SECRET_KEY': '73ng89rgdsn32qywxaz',
+        'CONNECT_TO_SOCKET_METHOD': 'external'
     },
     'pi_test': {
         'DATABASE_LOCATION': '''/home/pi/Projects/HAMC/data.db''',
         'PICKLE_LOCATION': '''/home/pi/Projects/HAMC/shared_dict''',
         'DEBUG': True,
-        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+        'SECRET_KEY': '73ng89rgdsn32qywxaz',
+        'CONNECT_TO_SOCKET_METHOD': 'external'
     },
     'testing_config': {
         'DATABASE_LOCATION': '''/home/alexander/prg/SQL/data.db''',
         'PICKLE_LOCATION': '''/home/alexander/prg/SQL/shared_dict''',
         'DEBUG': True,
-        'SECRET_KEY': '73ng89rgdsn32qywxaz'
+        'SECRET_KEY': '73ng89rgdsn32qywxaz',
+        'CONNECT_TO_SOCKET_METHOD': 'external'
     }
 }
 
@@ -37,11 +40,16 @@ app.config.update(configs[os.environ['FLASK_CONFIG']] or configs['pi_config'])
 PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 
+if app.config['CONNECT_TO_SOCKET_METHOD'] == 'external':
+    from connect_to_socket import call_server
+elif app.config['CONNECT_TO_SOCKET_METHOD'] == 'internal':
+    from connect_to_socket_internal import call_server
 
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
 def bokeh_bild(range=4800):
-    data = bk_plot_timeline(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3'))
+    data = bk_plot_timeline(LoadFromSQL(range, app.config['DATABASE_LOCATION'], 'VS1_GT1', 'VS1_GT3', 'VS1_GT2', 'VS1_Setpoint'))
+    print(data)
     resources = Resources("inline")
     plot_resources = RESOURCES.render(
         js_raw=resources.js_raw,
@@ -148,6 +156,30 @@ def VS1_CP1():
         dCP='VS1_CP1'
         )
 
+class PumpForm(Form):
+    """docstring for NameForm"""
+    LarmDelay = StringField('LarmDelay', validators=[Required()])
+    submit = SubmitField('Submit')
+
+@app.route('/VS1_CP1_new', methods=['GET', 'POST'])
+def VS1_CP1_new():
+    VS1_CP1_LarmDelay_Form = PumpForm()
+    if VS1_CP1_LarmDelay_Form.validate_on_submit():
+        print('Heyo! {}'.format(VS1_CP1_LarmDelay_Form.LarmDelay.data))
+    return render_template(
+        'CP_new.html',
+        dObject='VS1_CP1',
+        dCP='VS1_CP1',
+        LarmDelayForm=VS1_CP1_LarmDelay_Form
+        )
+
+
+@app.route('/VS1_GT1', methods=['GET', 'POST'])
+def VS1_GT1():
+    return render_template(
+        'GT.html',
+        dObject='VS1_GT1_Class'
+    )
 
 @app.route('/_JsonSharedDict')
 @app.route('/_JsonSharedDict/<dObject>')
@@ -157,6 +189,21 @@ def JsonSharedDict(dObject=None):
         return jsonify(result=load_shared_dict())
     else:
         return jsonify(result=load_shared_dict(dObject))
+
+@app.route('/_JsonSharedDict_new')
+@app.route('/_JsonSharedDict_new/<dObject>')
+def JsonSharedDict_new(dObject=None):
+    '''Jsonifies the shared dict'''
+    if dObject is None:
+        return render_template('404.html'), 404
+    else:
+        return jsonify(result=call_server({'r':[str(dObject)]}))
+
+
+@app.route('/test_internal')
+def test_internal():
+    call_server({'w':[['test1', 44]]})
+    return 'test internal{}'.format(call_server({'r':['test1', 'test2']}))
 
 
 def load_shared_dict(dObject=None):
@@ -178,6 +225,12 @@ def load_shared_dict(dObject=None):
             return shared_dict[dObject]
         except Exception as e:
             print('{} does not exist in the shared dictionary'.format(e))
+
+
+def load_values_from_controller(read_list = '', write_list = ''):
+    read_message = "'r': read_list" if read_list != None else ''
+    write_message = "'w': write_list" if write_list != None else ''
+    call_server(''.join([read_message, write_message]))
 
 
 def save_value(key, value):

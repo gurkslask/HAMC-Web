@@ -1,0 +1,6 @@
+{
+    "hostname": "0.0.0.0",
+    "username": "foo",
+    "password": "bar",
+    "port": 22
+}

@@ -35,20 +35,26 @@
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 <script>
-</script>
 $(document).ready(function(){
     setInterval(function(){
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dObject|tojson|safe}}, {}, function(data) {
-          $("#PV").text(data.result.{{dObject|safe}}.PV)
+          $("#T1").text(data.result.{{dObject|safe}}.T1),
+          $("#T2").text(data.result.{{dObject|safe}}.T2),
+          $("#T3").text(data.result.{{dObject|safe}}.T3),
+          $("#S1").text(data.result.{{dObject|safe}}.S1),
+          $("#S2").text(data.result.{{dObject|safe}}.S2),
+          $("#S3").text(data.result.{{dObject|safe}}.S3)
+          $("#LarmDelay").text(data.result.{{dObject|safe}}.LarmDelay)
           }
       )
   }, 3000);
 });
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
     setInterval(function(){
-        $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict/' + {{dObject|tojson|safe}}, {}, function(data) {
-          var Value = data.result.Out;
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dObject|tojson|safe}}, {}, function(data) {
+          var Value = data.result.{{dObject|safe}}.Out;
           if (Value == 1) {
             $("#state").text("True");
             $("#state").css("color","Green");
@@ -87,9 +93,13 @@ $(document).ready(function(){
         S3:<p id="S3">?</p>
     </li>
     <li>
+        LarmDelay:<p id="LarmDelay">?</p>
+    </li>
+    <li>
         State:<p id="state">?</p>
     </li>
 </ul>
 
+{{ wtf.quick_form(LarmDelayForm)}}
 
 {%endblock%}

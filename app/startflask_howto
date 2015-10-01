@@ -1,0 +1,7 @@
+This is how you export environment variables:
+
+For BASH:
+export FLASK_CONFIG=pi_config
+
+For fish:
+set -x FLASK_CONFIG pi_config
