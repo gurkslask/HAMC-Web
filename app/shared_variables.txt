@@ -1,0 +1,45 @@
+            'Komp': {'DictVarden': self.Komp.DictVarden},
+            self.VS1_CP1_Class.Name: {
+                'Out': self.VS1_CP1_Class.Out,
+                'Man': self.VS1_CP1_Class.Man,
+                'S1': self.VS1_CP1_Class.S1,
+                'S2': self.VS1_CP1_Class.S2,
+                'S3': self.VS1_CP1_Class.S3,
+                'T1': self.VS1_CP1_Class.T1,
+                'T2': self.VS1_CP1_Class.T2,
+                'T3': self.VS1_CP1_Class.T3,
+                'LarmDelay': self.VS1_CP1_Class.LarmDelay
+            },
+            self.VS1_CP2_Class.Name: {
+                'Out': self.VS1_CP2_Class.Out,
+                'Man': self.VS1_CP2_Class.Man,
+                'S1': self.VS1_CP2_Class.S1,
+                'S2': self.VS1_CP2_Class.S2,
+                'S3': self.VS1_CP2_Class.S3,
+                'T1': self.VS1_CP2_Class.T1,
+                'T2': self.VS1_CP2_Class.T2,
+                'T3': self.VS1_CP2_Class.T3,
+                'LarmDelay': self.VS1_CP2_Class.LarmDelay
+            },
+            self.VS1_SV1_Class.Name: {
+                'deadband': self.VS1_SV1_Class.deadband,
+                'Time_Open': self.VS1_SV1_Class.Time_Open,
+                'Time_Close': self.VS1_SV1_Class.Time_Close,
+                'Open_IO': self.VS1_SV1_Class.Open_IO,
+                'Close_IO': self.VS1_SV1_Class.Close_IO
+            },
+            'VS1_GT1': {
+                'PV': self.VS1_GT1.temp
+            },
+            'VS1_SV1_SP_Down': {'SP_Down': self.VS1_SV1_SP_Down},
+            'VS1_GT2': {'PV': self.VS1_GT2.temp},
+            'VS1_GT3': {'PV': self.VS1_GT3.temp},
+            'SUN_GT2': {'PV': self.SUN_GT2.temp},
+            'Setpoint_VS1': {'SP': self.Setpoint_VS1},
+            'time': {'time': time.time()},
+            'IOVariables': {'IOVar': self.IOVariables},
+            'update_from_flask': False,
+            'update_from_main': False,
+            'Komp.value_to_lower': {'value_to_lower': self.Komp.value_to_lower},
+            'Weather_State': {'Weather_State': self.Weather_State},
+            'ThreeDayTemp': {'ThreeDayTemp': self.ThreeDayTemp}
