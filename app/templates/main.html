@@ -1,0 +1,81 @@
+<!doctype html>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Cirkulationspump 1 {%endblock%}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"> Toggle navigation </span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+            </button>
+            <a class="navbar-brand" href="/"> Hej </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/"></a>Home</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block content %}
+
+<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
+</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script>
+$(document).ready(function(){
+    setInterval(function(){
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT1|tojson|safe}}, {}, function(data) {
+          $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV)
+          }
+      )
+  }, 3000);
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    setInterval(function(){
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_CP1|tojson|safe}}, {}, function(data) {
+          var Value = data.result.{{dVS1_CP1|safe}}.Out;
+          if (Value == 1) {
+            $("#dVS1_CP1_state").text("True");
+            $("#dVS1_CP1_state").css("color","Green");
+          }
+          else if (Value == 0) {
+            $("#dVS1_CP1_state").text("False");
+            $("#dVS1_CP1_state").css("color","Black");
+          }
+          
+          }
+      )
+  }, 3000);
+});
+
+</script>
+<ul>
+    <li>
+        <h1>Overview</h1>
+    </li>
+    <li>
+        T1:<p id="dVS1_GT1_PV">?</p>
+    </li>
+    <li>
+        State:<p id="dVS1_CP1_state">?</p>
+    </li>
+</ul>
+
+
+
+{%endblock%}
