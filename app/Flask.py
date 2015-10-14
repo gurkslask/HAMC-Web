@@ -166,6 +166,14 @@ def VS1_CP1():
         )
 
 
+@app.route('/main2', methods=['GET', 'POST'])
+def main2():
+    return render_template(
+        'main.html',
+        dVS1_CP1='VS1_CP1',
+        dVS1_GT1='VS1_GT1'
+    )
+
 class PumpForm(Form):
     """docstring for NameForm"""
     LarmDelay = StringField('LarmDelay', validators=[Required()])

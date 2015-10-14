@@ -37,14 +37,8 @@
 <script>
 $(document).ready(function(){
     setInterval(function(){
-      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dObject|tojson|safe}}, {}, function(data) {
-          $("#T1").text(data.result.{{dObject|safe}}.T1),
-          $("#T2").text(data.result.{{dObject|safe}}.T2),
-          $("#T3").text(data.result.{{dObject|safe}}.T3),
-          $("#S1").text(data.result.{{dObject|safe}}.S1),
-          $("#S2").text(data.result.{{dObject|safe}}.S2),
-          $("#S3").text(data.result.{{dObject|safe}}.S3)
-          $("#LarmDelay").text(data.result.{{dObject|safe}}.LarmDelay)
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT1|tojson|safe}}, {}, function(data) {
+          $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV)
           }
       )
   }, 3000);
@@ -53,15 +47,15 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){
     setInterval(function(){
-      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dObject|tojson|safe}}, {}, function(data) {
-          var Value = data.result.{{dObject|safe}}.Out;
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_CP1|tojson|safe}}, {}, function(data) {
+          var Value = data.result.{{dVS1_CP1|safe}}.Out;
           if (Value == 1) {
-            $("#state").text("True");
-            $("#state").css("color","Green");
+            $("#dVS1_CP1_state").text("True");
+            $("#dVS1_CP1_state").css("color","Green");
           }
           else if (Value == 0) {
-            $("#state").text("False");
-            $("#state").css("color","Black");
+            $("#dVS1_CP1_state").text("False");
+            $("#dVS1_CP1_state").css("color","Black");
           }
           
           }
@@ -72,39 +66,16 @@ $(document).ready(function(){
 </script>
 <ul>
     <li>
-        {{ dCP }}
+        <h1>Overview</h1>
     </li>
     <li>
-        T1:<p id="T1">?</p>
+        GT1:<p id="dVS1_GT1_PV">?</p>
     </li>
     <li>
-        T2:<p id="T2">?</p>
-    </li>
-    <li>
-        T3:<p id="T3">?</p>
-    </li>
-    <li>
-        S1:<p id="S1">?</p>
-    </li>
-    <li>
-        S2:<p id="S2">?</p>
-    </li>
-    <li>
-        S3:<p id="S3">?</p>
-    </li>
-    <li>
-        LarmDelay:<p id="LarmDelay">?</p>
-    </li>
-    <li>
-        State:<p id="state">?</p>
+        State:<p id="dVS1_CP1_state">?</p>
     </li>
 </ul>
-{{ wtf.quick_form(LarmDelayForm)}}
-<button onclick="PopUpForm()">#</button>
-<p id="demo"></p>
-<script type="text/javascript">
-  {{ wtf.quick_form(LarmDelayForm)}}
-</script>
+
 
 
 {%endblock%}
