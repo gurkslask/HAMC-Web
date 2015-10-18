@@ -203,6 +203,21 @@ def VS1_GT1():
         dObject='VS1_GT1_Class'
     )
 
+class setForm(Form):
+    """docstring for setForm"""
+    setObject = StringField('Set', validators=[Required()])
+    submit = SubmitField('Submit')
+
+@app.route('/set_popup/<setObject>', methods=['GET', 'POST'])
+def set_popup(setObject=None):
+    '''a popup for setting values'''
+    set_Popup_Form = setForm()
+    if set_Popup_Form.validate_on_submit():
+        print('Heyo {}'.format(set_Popup_Form.data))
+    return render_template(
+        'set_popup.html',
+        set_Popup_Form = set_Popup_Form
+    )
 
 @app.route('/_JsonSharedDict')
 @app.route('/_JsonSharedDict/<dObject>')

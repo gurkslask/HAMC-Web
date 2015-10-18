@@ -1,0 +1,16 @@
+<!doctype html>
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Cirkulationspump 1 {%endblock%}
+
+
+{%block content %}
+
+<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
+</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+  {{ wtf.quick_form(set_Popup_Form)}}
+
+{%endblock%}

@@ -99,12 +99,6 @@ $(document).ready(function(){
         State:<p id="state">?</p>
     </li>
 </ul>
-{{ wtf.quick_form(LarmDelayForm)}}
-<button onclick="PopUpForm()">#</button>
-<p id="demo"></p>
-<script type="text/javascript">
-  {{ wtf.quick_form(LarmDelayForm)}}
-</script>
-
+<a href="{{ url_for('set_popup', setObject='VS1_CP1') }}" target="_blank">Set!</a>
 
 {%endblock%}
