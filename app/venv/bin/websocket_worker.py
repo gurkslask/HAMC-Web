@@ -1,4 +1,4 @@
-#!/home/alexander/Projects/Home-automation-Flask/Flask/venv/bin/python3
+#!/home/alexander/Projects/HAMC-Web/app/venv/bin/python3
 import argparse
 from bokeh.server.websocket import make_app
 import logging

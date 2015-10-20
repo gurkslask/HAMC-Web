@@ -32,7 +32,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/alexander/Projects/Home-automation-Flask/Flask/venv"
+set -gx VIRTUAL_ENV "/home/alexander/Projects/HAMC-Web/app/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
