@@ -5,8 +5,6 @@ from flask.ext.wtf import Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from bokeh_plot import LoadFromSQL, bk_plot_timeline
-from bokeh.resources import Resources
-from bokeh.templates import RESOURCES
 from bokeh.embed import components
 import os
 
@@ -59,21 +57,12 @@ def bokeh_bild(range=4800):
             )
         )
     print(data)
-    resources = Resources("inline")
-    plot_resources = RESOURCES.render(
-        js_raw=resources.js_raw,
-        css_raw=resources.css_raw,
-        js_files=resources.js_files,
-        css_files=resources.css_files,
-    )
-    plot_script, plot_div = components(
-        data, resources)
+    plot_script, plot_div = components(data)
     # return render_template('bild.html')
     return render_template(
         'bild.html',
         script=plot_script,
-        div=plot_div,
-        resources=plot_resources)
+        div=plot_div)
 
 
 @app.route('/')

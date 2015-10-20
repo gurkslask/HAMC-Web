@@ -1,4 +1,4 @@
-from bokeh.plotting import line, hold, figure, HBox
+from bokeh.plotting import figure
 
 import sqlite3 as lite
 import datetime as dt
@@ -76,7 +76,7 @@ def bk_plot_timeline(data):
             color=color_picker.__next__(),
             x_axis_type='datetime'
         )
-    bk_object = HBox(p1)
+    bk_object = make_figure()
     print(
         '{} seconds to  plot'.format(time.time()-tid)
     )
