@@ -28,7 +28,9 @@ class EchoServerClientProtocol(asyncio.Protocol):
             if read_or_write is 'w':
                 for value_to_write in message[read_or_write]:
                     print(value_to_write)
-                    #value_to_write = value_to_write.split(',')
+                    print("Changing key {} from value {} to {}".format(
+                        value_to_write[0], self.HAMC_data[value_to_write[0]], value_to_write[1])) 
+                    # value_to_write = value_to_write.split(',')
                     self.HAMC_data[value_to_write[0]] = value_to_write[1]
                 self.transport.write(pickle.dumps({'Done': 1}))
             elif read_or_write is 'r':
