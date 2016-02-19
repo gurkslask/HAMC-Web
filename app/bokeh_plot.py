@@ -1,4 +1,4 @@
-from bokeh.plotting import line, hold, figure, HBox
+from bokeh.plotting import figure 
 
 import sqlite3 as lite
 import datetime as dt
