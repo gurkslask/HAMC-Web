@@ -3,8 +3,13 @@
 <head>
 <meta charset='utf-8' />
 <meta http-equiv='content-type' content='text/html; charset=utf-8' />
-{{ resources|indent(4)|safe }}
-{{ script|indent(4)|safe }}
+<link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
+    rel="stylesheet" type="text/css"
+>
+<script
+    src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"
+></script>
 </head>
 
 {% extends "bootstrap/base.html" %}
@@ -37,6 +42,7 @@
 
 {%block content %}
 
-{{ div|indent(4)|safe }}
+{{ script }}
+{{ div }}
 
 {%endblock%}
