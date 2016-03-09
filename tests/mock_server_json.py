@@ -9,7 +9,11 @@ __author__ = 'alexander'
 
 mockvalues = {'test1': 42,
               'test2': 2,
-              'test3': 64}
+              'test_dict': {
+                  20: 20, 10: 40, 0: 50, -5: 60
+              },
+              'test2': 64}
+
 
 class EchoServerClientProtocol(asyncio.Protocol):
     def __init__(self, hdata):
@@ -33,7 +37,6 @@ class EchoServerClientProtocol(asyncio.Protocol):
                         value_to_write[0], self.HAMC_data[value_to_write[0]], value_to_write[1])) 
                     # value_to_write = value_to_write.split(',')
                     self.HAMC_data[value_to_write[0]] = value_to_write[1]
-                self.transport.write(json.dumps({'Done': 1}))
             elif read_or_write is 'r':
                 data_to_send = {}
                 for value_to_read in message[read_or_write]:
@@ -41,7 +44,7 @@ class EchoServerClientProtocol(asyncio.Protocol):
                         data_to_send[value_to_read] = self.HAMC_data[value_to_read]
                     except KeyError:
                         data_to_send[value_to_read] = 'Keyerror'
-                self.transport.write(json.dumps(data_to_send))
+                self.transport.write(json.dumps(data_to_send).encode('utf-8'))
 
         print('Close the client socket')
         self.transport.close()
