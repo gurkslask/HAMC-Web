@@ -1,4 +1,5 @@
 from bokeh.plotting import figure
+from bokeh.models import HoverTool
 
 import sqlite3 as lite
 import datetime as dt
@@ -56,12 +57,12 @@ def LoadFromSQL(interval, db, *sensors):
 
 
 def bk_plot_timeline(data):
-    #This is a plot that takes time on the x-axis
+    # This is a plot that takes time on the x-axis
     tid = time.time()
     color_picker = ColorPicker()
-    #Resolution
+    # Resolution
     res = 10
-    p1 = figure(tools="resize, reset, box_zoom, crosshair")
+    p1 = figure(tools='resize, reset, box_zoom, crosshair')
     p1.title = 'Temperatures!'
     for sensor in data:
         x = []
@@ -69,10 +70,15 @@ def bk_plot_timeline(data):
         for values in data[sensor][::res]:
             x.append(values[0])
             y.append(values[1])
+        hover = HoverTool(
+            tooltips=[
+                ('(x,y)', '($x, $y)')
+            ]
+        )
         p1.line(
             x,
             y,
-            legend=sensor,
+            tools=[hover],
             color=color_picker.__next__(),
             x_axis_type='datetime'
         )

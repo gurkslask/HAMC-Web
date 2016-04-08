@@ -73,6 +73,11 @@ def main2():
         dVS1_GT1='VS1_GT1'
     )
 
+@app.route('/dia', methods=['GET', 'POST'])
+def main3():
+    return render_template(
+        'ui.html'
+    )
 
 @app.route('/VS1_GT1', methods=['GET', 'POST'])
 def VS1_GT1():

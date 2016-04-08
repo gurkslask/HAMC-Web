@@ -32,7 +32,7 @@
 
 <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
 </script>
-<script type=text/javascript src="{{ url_for('static', filename='jquery-ui/jquery-ui.js') }}">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </script>
 
 <script type=text/javascript>
@@ -68,25 +68,6 @@ $(document).ready(function(){
 });
 
 </script>
-<script type="text/javascript">
-$(function() {
-    $( "#dialog-message" ).dialog({
-        modal: true,
-        buttons: {
-            Ok: function() {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
-});
-</script>
-
-<div id="dialog-message" title="Download complete">
-    <p>
-    <span class="ui-icion ui-icon-circle-check" style="float:left; margin 0 7px 50px 0;"></span>
-    some text
-    </p>
-</div>
 <ul>
     <li>
         <h1>Overview</h1>
