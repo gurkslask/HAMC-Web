@@ -20,8 +20,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/"></a>Home</li>
-                <li><a href="/bokeh_bild"></a>Trends</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/bokeh_bild">Trends</a></li>
             </ul>
         </div>
     </div>
@@ -32,6 +32,9 @@
 
 <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
 </script>
+<script type=text/javascript src="{{ url_for('static', filename='jquery-ui/jquery-ui.js') }}">
+</script>
+
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
@@ -65,6 +68,25 @@ $(document).ready(function(){
 });
 
 </script>
+<script type="text/javascript">
+$(function() {
+    $( "#dialog-message" ).dialog({
+        modal: true,
+        buttons: {
+            Ok: function() {
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+});
+</script>
+
+<div id="dialog-message" title="Download complete">
+    <p>
+    <span class="ui-icion ui-icon-circle-check" style="float:left; margin 0 7px 50px 0;"></span>
+    some text
+    </p>
+</div>
 <ul>
     <li>
         <h1>Overview</h1>
