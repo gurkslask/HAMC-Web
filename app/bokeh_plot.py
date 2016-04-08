@@ -82,11 +82,11 @@ def bk_plot_timeline(data):
             color=color_picker.__next__(),
             x_axis_type='datetime'
         )
-    bk_object = make_figure()
+    # bk_object = make_figure()
     print(
         '{} seconds to  plot'.format(time.time()-tid)
     )
-    return bk_object
+    return p1
 
 
 def bk_plot(data):
