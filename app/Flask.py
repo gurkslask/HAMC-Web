@@ -73,6 +73,7 @@ def main2():
     form = AForm()
     if form.validate_on_submit():
         print(form.ThreeDayTemp.data)
+        call_server({'w': [['self.ThreeDayTemp', form.ThreeDayTemp.data]]})
     return render_template(
         'main.html',
         form=form,

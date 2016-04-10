@@ -102,20 +102,19 @@ $(document).ready(function(){
     <li>
         Threeday temperature <p id="dThreeDayTemp_PV"> ? </p>
         <button id="btn1"> Set! </button>
-        <p id="form1">Set here </p>
+        <form action="" method="post" name="ThreeDayTemp" id="form1">
+            {{ form.hidden_tag() }}
+            <p>
+                Please enter temp <br>
+                {{ form.ThreeDayTemp }} <br>
+            </p>
+            <p> <input type="submit" value="Submit!"></p>
+        </form>
     </li>
     <li>
         P1 output:<p id="dVS1_CP1_state">?</p>
     </li>
 </ul>
-<form action="" method="post" name="ThreeDayTemp">
-    {{ form.hidden_tag() }}
-    <p>
-        Please enter temp <br>
-        {{ form.ThreeDayTemp }} <br>
-    </p>
-    <p> <input type="submit" value="Submit!"></p>
-</form>
     
 
 
