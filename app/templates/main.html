@@ -45,6 +45,18 @@ $(document).ready(function(){
           $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV)
           }
       )
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT2|tojson|safe}}, {}, function(data) {
+          $("#dVS1_GT2_PV").text(data.result.{{dVS1_GT2|safe}}.PV)
+          }
+      )
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dThreeDayTemp|tojson|safe}}, {}, function(data) {
+          $("#dThreeDayTemp_PV").text(data.result.{{dThreeDayTemp|safe}}.ThreeDayTemp)
+          }
+      )
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT3|tojson|safe}}, {}, function(data) {
+          $("#dVS1_GT3_PV").text(data.result.{{dVS1_GT3|safe}}.PV)
+          }
+      )
   }, 3000);
 });
 </script>
@@ -67,6 +79,12 @@ $(document).ready(function(){
   }, 3000);
 });
 
+$(document).ready(function(){
+    $("#form1").toggle();
+    $("#btn1").click(function(){
+        $("#form1").toggle();
+    });
+});
 </script>
 <ul>
     <li>
@@ -76,10 +94,29 @@ $(document).ready(function(){
         GT1:<p id="dVS1_GT1_PV">?</p>
     </li>
     <li>
-        State:<p id="dVS1_CP1_state">?</p>
+        GT2:<p id="dVS1_GT2_PV">?</p>
+    </li>
+    <li>
+        GT3:<p id="dVS1_GT3_PV">?</p>
+    </li>
+    <li>
+        Threeday temperature <p id="dThreeDayTemp_PV"> ? </p>
+        <button id="btn1"> Set! </button>
+        <p id="form1">Set here </p>
+    </li>
+    <li>
+        P1 output:<p id="dVS1_CP1_state">?</p>
     </li>
 </ul>
-
+<form action="" method="post" name="ThreeDayTemp">
+    {{ form.hidden_tag() }}
+    <p>
+        Please enter temp <br>
+        {{ form.ThreeDayTemp }} <br>
+    </p>
+    <p> <input type="submit" value="Submit!"></p>
+</form>
+    
 
 
 {%endblock%}

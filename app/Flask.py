@@ -1,5 +1,4 @@
 from flask import Flask, render_template, jsonify
-import pickle
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
 from wtforms import StringField, SubmitField
@@ -65,12 +64,23 @@ def bokeh_bild(range=4800):
         div=plot_div)
 
 
+class AForm(Form):
+    ThreeDayTemp = StringField('ThreeDayTemp', validators=[Required()])
+
+
 @app.route('/', methods=['GET', 'POST'])
 def main2():
+    form = AForm()
+    if form.validate_on_submit():
+        print(form.ThreeDayTemp.data)
     return render_template(
         'main.html',
+        form=form,
         dVS1_CP1='VS1_CP1',
-        dVS1_GT1='VS1_GT1'
+        dVS1_GT1='VS1_GT1',
+        dVS1_GT3='VS1_GT3',
+        dThreeDayTemp='ThreeDayTemp',
+        dVS1_GT2='VS1_GT2'
     )
 
 @app.route('/dia', methods=['GET', 'POST'])
