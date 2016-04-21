@@ -33,17 +33,34 @@
 <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
 </script>
 
+<script>
+$(document).ready(function() {
+    $("#btn1").click(function(){
+        $("#jtest").text("hej");
+        $("#myPoly").attr("fill", "black");
+    });
+
+    $("#btn2").click(function(){
+        $("#jtest").text("hej2");
+        $("#myPoly").attr("fill", "red");
+    });
+
+});
+</script>
 
 <button onclick=myPoly.style.fill="green";> Toggle </button>
 
 <button onclick=myPoly.style.fill="black";> Toggle </button>
 
+<button id="btn1"> jTest </button>
+<button id="btn2"> jTest </button>
 <svg width="100" height="100">
     <circle cx="50" cy="50" r="40" stroke="green" fill="none"/>
     <polygon id="myPoly" points="30,15 30,85 90,50" fill="orange">
 </svg>
 
 
+<p id="jtest"> ? </p>
 
 
 <ul>
