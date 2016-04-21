@@ -32,7 +32,7 @@
 
 <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
 </script>
-<script type=text/javascript src="{{ url_for('static', filename='jquery-ui/jquery-ui.js') }}">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </script>
 
 <script type=text/javascript>
@@ -43,6 +43,18 @@ $(document).ready(function(){
     setInterval(function(){
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT1|tojson|safe}}, {}, function(data) {
           $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV)
+          }
+      )
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT2|tojson|safe}}, {}, function(data) {
+          $("#dVS1_GT2_PV").text(data.result.{{dVS1_GT2|safe}}.PV)
+          }
+      )
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dThreeDayTemp|tojson|safe}}, {}, function(data) {
+          $("#dThreeDayTemp_PV").text(data.result.{{dThreeDayTemp|safe}}.ThreeDayTemp)
+          }
+      )
+      $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT3|tojson|safe}}, {}, function(data) {
+          $("#dVS1_GT3_PV").text(data.result.{{dVS1_GT3|safe}}.PV)
           }
       )
   }, 3000);
@@ -67,26 +79,13 @@ $(document).ready(function(){
   }, 3000);
 });
 
-</script>
-<script type="text/javascript">
-$(function() {
-    $( "#dialog-message" ).dialog({
-        modal: true,
-        buttons: {
-            Ok: function() {
-                $( this ).dialog( "close" );
-            }
-        }
+$(document).ready(function(){
+    $("#form1").toggle();
+    $("#btn1").click(function(){
+        $("#form1").toggle();
     });
 });
 </script>
-
-<div id="dialog-message" title="Download complete">
-    <p>
-    <span class="ui-icion ui-icon-circle-check" style="float:left; margin 0 7px 50px 0;"></span>
-    some text
-    </p>
-</div>
 <ul>
     <li>
         <h1>Overview</h1>
@@ -95,10 +94,28 @@ $(function() {
         GT1:<p id="dVS1_GT1_PV">?</p>
     </li>
     <li>
-        State:<p id="dVS1_CP1_state">?</p>
+        GT2:<p id="dVS1_GT2_PV">?</p>
+    </li>
+    <li>
+        GT3:<p id="dVS1_GT3_PV">?</p>
+    </li>
+    <li>
+        Threeday temperature <p id="dThreeDayTemp_PV"> ? </p>
+        <button id="btn1"> Set! </button>
+        <form action="" method="post" name="ThreeDayTemp" id="form1">
+            {{ form.hidden_tag() }}
+            <p>
+                Please enter temp <br>
+                {{ form.ThreeDayTemp }} <br>
+            </p>
+            <p> <input type="submit" value="Submit!"></p>
+        </form>
+    </li>
+    <li>
+        P1 output:<p id="dVS1_CP1_state">?</p>
     </li>
 </ul>
-
+    
 
 
 {%endblock%}
