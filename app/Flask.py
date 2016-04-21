@@ -81,6 +81,12 @@ def VS1_GT1():
         dObject='VS1_GT1_Class'
     )
 
+@app.route('/skit', methods=['GET', 'POST'])
+def skit():
+    return render_template(
+        'skit.html'
+    )
+
 
 @app.route('/_JsonSharedDict_new')
 @app.route('/_JsonSharedDict_new/<dObject>')
