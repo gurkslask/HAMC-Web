@@ -1,0 +1,69 @@
+<!doctype html>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Cirkulationspump 1 {%endblock%}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only"> Toggle navigation </span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+            </button>
+            <a class="navbar-brand" href="/"> Home automation monitor and control! </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/bokeh_bild">Trends</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block content %}
+
+<div style="background-image:{{ url_for('static', filename='VS1.svg') }};width:100px;height:100px"> ? </div>
+<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#btn1").click(function(){
+        $("#jtest").text("hej");
+        $("#myPoly").attr("fill", "black");
+    });
+
+    $("#btn2").click(function(){
+        $("#jtest").text("hej2");
+        $("#myPoly").attr("fill", "red");
+    });
+
+});
+</script>
+
+<button onclick=myPoly.style.fill="green";> Toggle </button>
+
+<button onclick=myPoly.style.fill="black";> Toggle </button>
+
+<button id="btn1"> jTest </button>
+<button id="btn2"> jTest </button>
+
+
+<p id="jtest"> ? </p>
+
+
+
+
+<svg width="100" height="100">
+    <circle cx="50" cy="50" r="40" stroke="green" fill="none"/>
+    <polygon id="myPoly" points="30,15 30,85 90,50" fill="orange">
+</svg>
+{%endblock%}

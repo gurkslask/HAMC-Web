@@ -9,7 +9,9 @@ __author__ = 'alexander'
 
 mockvalues = {'test1': 42,
               'test2': 2,
-              'test3': 64}
+              'test3': 64,
+              'dd': {20: 15, 5: 30, -10:50}
+              }
 
 class EchoServerClientProtocol(asyncio.Protocol):
     def __init__(self, hdata):

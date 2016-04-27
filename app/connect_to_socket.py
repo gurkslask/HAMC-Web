@@ -29,7 +29,10 @@ def call_server(message):
     HOST = '192.168.1.8'    # The remote host
     PORT = 5004              # The same port as used by the server
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((HOST, PORT))
+    try:
+        s.connect((HOST, PORT))
+    except Exception as e:
+        print("fel")
     s.sendall(message)
     data = s.recv(1024)
     s.close()
