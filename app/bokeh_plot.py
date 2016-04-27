@@ -62,7 +62,12 @@ def bk_plot_timeline(data):
     color_picker = ColorPicker()
     # Resolution
     res = 10
-    p1 = figure(tools='resize, reset, box_zoom, crosshair')
+    hover = HoverTool(
+        tooltips=[
+            ('(x,y)', '($x, $y)')
+        ]
+    )
+    p1 = figure(tools=[hover])
     p1.title = 'Temperatures!'
     for sensor in data:
         x = []
@@ -70,18 +75,11 @@ def bk_plot_timeline(data):
         for values in data[sensor][::res]:
             x.append(values[0])
             y.append(values[1])
-        hover = HoverTool(
-            tooltips=[
-                ('(x,y)', '($x, $y)')
-            ]
-        )
         p1.line(
             x,
             y,
-            tools=[hover],
             color=color_picker.__next__(),
         )
-    # bk_object = make_figure()
     print(
         '{} seconds to  plot'.format(time.time()-tid)
     )

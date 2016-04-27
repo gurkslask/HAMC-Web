@@ -5,6 +5,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from bokeh_plot import LoadFromSQL, bk_plot_timeline
 from bokeh.embed import components
+from bokeh.resources import INLINE
 import os
 
 configs = {
@@ -56,12 +57,16 @@ def bokeh_bild(range=4800):
             )
         )
     print(data)
-    plot_script, plot_div = components(data)
-    # return render_template('bild.html')
+    plot_script, plot_div = components(data, INLINE)
+    js_resources = INLINE.render_js()
+    css_resources = INLINE.render_css()
+
     return render_template(
         'bild.html',
         script=plot_script,
-        div=plot_div)
+        div=plot_div,
+        js_resources=js_resources,
+        css_resources=css_resources)
 
 
 class AForm(Form):
