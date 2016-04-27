@@ -10,6 +10,9 @@
 <script
     src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"
 ></script>
+{{ js_resources|indent(4)|safe }}
+{{ css_resources|indent(4)|safe }}
+{{ script|indent(4)|safe }}
 </head>
 
 {% extends "bootstrap/base.html" %}
@@ -42,7 +45,6 @@
 
 {%block content %}
 
-{{ script }}
-{{ div }}
+{{ div|indent(4)|safe }}
 
 {%endblock%}
