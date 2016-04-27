@@ -23,7 +23,7 @@ configs = {
         'CONNECT_TO_SOCKET_METHOD': 'external'
     },
     'testing_config': {
-        'DATABASE_LOCATION': '''/home/alexander/prg/SQL/data.db''',
+        'DATABASE_LOCATION': '''/home/alex/prg/SQL/data.db''',
         'PICKLE_LOCATION': '''/home/alexander/prg/SQL/shared_dict''',
         'DEBUG': True,
         'SECRET_KEY': '73ng89rgdsn32qywxaz',
