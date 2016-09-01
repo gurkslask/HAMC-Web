@@ -6,6 +6,10 @@ import datetime as dt
 import time
 import random
 
+import numpy as np
+
+def datetime2(x):
+    return np.array(x, dtype=np.datetime64)
 
 def ColorPicker():
     colors = [
@@ -64,10 +68,14 @@ def bk_plot_timeline(data):
     res = 10
     hover = HoverTool(
         tooltips=[
-            ('(x,y)', '($x, $y)')
-        ]
+            ('Legend:', '@legend'),
+            ('Temperatures: ', '@y C'),
+            ('(x,y)', '($x, $y )')
+        ],
+        mode='hline'
     )
-    p1 = figure(tools=[hover])
+    p1 = figure(tools='box_zoom, crosshair', x_axis_type="datetime")
+    p1.add_tools(hover)
     p1.title = 'Temperatures!'
     for sensor in data:
         x = []
@@ -79,6 +87,8 @@ def bk_plot_timeline(data):
             x,
             y,
             color=color_picker.__next__(),
+            line_width=3,
+            legend=sensor
         )
     print(
         '{} seconds to  plot'.format(time.time()-tid)

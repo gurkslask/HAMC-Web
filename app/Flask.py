@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.wtf import Form
-from flask.ext.bower import Bower
+from flask_bootstrap import Bootstrap
+from flask_wtf import Form
+from flask_bower import Bower
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from bokeh_plot import LoadFromSQL, bk_plot_timeline
