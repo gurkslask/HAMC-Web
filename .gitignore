@@ -54,3 +54,4 @@ docs/_build/
 target/
 .idea/
 app/venv
+app/bower_components

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
+from flask.ext.bower import Bower
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 from bokeh_plot import LoadFromSQL, bk_plot_timeline
@@ -36,6 +37,7 @@ app = Flask(__name__)
 app.config.update(configs[os.environ['FLASK_CONFIG']] or configs['pi_config'])
 PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
+Bower(app)
 
 if app.config['CONNECT_TO_SOCKET_METHOD'] == 'external':
     from connect_to_socket import call_server
@@ -106,6 +108,12 @@ def VS1_GT1():
 def skit():
     return render_template(
         'skit.html'
+    )
+
+@app.route('/skit2', methods=['GET', 'POST'])
+def skit2():
+    return render_template(
+        'skit2.html'
     )
 
 
