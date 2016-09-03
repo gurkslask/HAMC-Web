@@ -11,17 +11,28 @@
 <script type=text/javascript src="{{ url_for('bower.static', filename='snap.svg/dist/snap.svg.js') }}"> </script>
 <script>
 var s = Snap(800, 800);
-var bigCircle = s.circle(65, 65, 60);
-bigCircle.attr({
-    fill: "#bada55",
-    stroke: "#000",
-    strokeWidth: 5
-});
-var t1 = s.rect(99, 50, 5, 50);
-var t2 = s.rect(99, 19, 5, 50);
-t1.transform('r45');
-t2.transform('r135');
+//var bigCircle = s.circle(65, 65, 60);
+//bigCircle.attr({
+//    fill: "#bada55",
+//    stroke: "#000",
+//    strokeWidth: 5
+//});
+//var t1 = s.rect(99, 50, 5, 50);
+//var t2 = s.rect(99, 19, 5, 50);
+//t1.transform('r45');
+//t2.transform('r135');
+//t1.animate({transform:'r90'}, 2000);
 
-t1.animate({transform:'r90'}, 2000);
+Snap.load( "{{ url_for('static', filename='pump.svg') }}",  function(f) {
+    var g = f.select("g");
+    s.append(g);
+    var t = g.select("#tri");
+    var c = g.select("#cirk");
+    //t.animate({transform:"r90, s2", fill:"#bada55"}, 2000);
+    t.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
+    c.animate({transform: "10,10", fill:"bbbbbb"}, 2000);
+});
+
+
 </script>
 {%endblock%}
