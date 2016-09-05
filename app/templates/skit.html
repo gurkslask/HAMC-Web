@@ -17,11 +17,13 @@ bigCircle.attr({
     stroke: "#000",
     strokeWidth: 5
 });
-var t1 = s.rect(99, 50, 5, 50);
-var t2 = s.rect(99, 19, 5, 50);
-t1.transform('r45');
+//bigCircle.animate({transform:'t20, 20'}, 1000);
+var t1 = s.rect(50, 50, 5, 50);
+var t2 = s.rect(50, 50, 5, 50);
+//t1.transform('r45');
 t2.transform('r135');
 
-t1.animate({transform:'r90'}, 2000);
+//t1.animate({transform:'t90'}, 2000);
+t1.animate({transform:'r360 50, 50'}, 2000);
 </script>
 {%endblock%}
