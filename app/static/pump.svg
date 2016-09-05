@@ -65,7 +65,7 @@
        r="48.208191" />
     <path
        sodipodi:type="star"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#00ff00;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#00ff00;stroke-width:3.00015783;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="tri"
        sodipodi:sides="3"
        sodipodi:cx="137.51173"
@@ -78,8 +78,8 @@
        inkscape:rounded="0"
        inkscape:randomized="0"
        d="m 159.10456,294.79102 -16.19462,9.34996 -16.19462,9.34997 0,-18.69993 0,-18.69994 16.19462,9.34997 z"
-       inkscape:transform-center-x="-10.585031"
        transform="matrix(1.9608406,0,0,1.8048601,-121.50288,-219.25572)"
-       inkscape:transform-center-y="-1.0715643e-05" />
+       inkscape:transform-center-y="-1.0715643e-05"
+       inkscape:transform-center-x="-10.585031" />
   </g>
 </svg>
