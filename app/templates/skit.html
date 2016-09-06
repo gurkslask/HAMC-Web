@@ -23,12 +23,12 @@ var symb = Snap.load( "{{ url_for('static', filename='pump.svg') }}",  function(
 
 function PumpOn() {
     t.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
-    c.animate({transform: "10,10", fill:"bbbbbb"}, 2000);
+    c.animate({transform:"", fill:"000000"}, 2000);
 };
 
 function PumpOff() {
-    t.animate({transform:"r0, s2, t-13, 3", fill:"#FFFFFF"}, 1000, mina.easeinout);
-    c.animate({transform: "10,10", fill:"FFFFFF"}, 2000);
+    t.animate({transform:"r0, s2, t9, 9", fill:"#FFFFFF"}, 1000, mina.easeinout);
+    c.animate({transform:"",fill:"FFFFFF"}, 2000);
 };
 </script>
 <button onclick="test()">#</button><p>
