@@ -11,29 +11,34 @@
 <script type=text/javascript src="{{ url_for('bower.static', filename='snap.svg/dist/snap.svg.js') }}"> </script>
 <script>
 
-var s = Snap(100, 100);
+var s = Snap(120, 120);
 var symb = Snap.load( "{{ url_for('static', filename='pump.svg') }}",  function(f) {
-    var g = f.select("g");
-    s.append(g);
-    //t.animate({transform:"r90, s2", fill:"#bada55"}, 2000);
-    return g;
+    t = f.select("#tri");
+    c = f.select("#cirk");
+    s.append(f);
+    /*t.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
+    c.animate({transform: "10,10", fill:"bbbbbb"}, 2000);*/
 })();
 
-function PumpOn(g) {
-    var t = g.select("#tri");
-    var c = g.select("#cirk");
+
+function PumpOn() {
     t.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
     c.animate({transform: "10,10", fill:"bbbbbb"}, 2000);
-    return true;
 };
-PumpOn(symb);
+
+function PumpOff() {
+    t.animate({transform:"r0, s2, t-13, 3", fill:"#FFFFFF"}, 1000, mina.easeinout);
+    c.animate({transform: "10,10", fill:"FFFFFF"}, 2000);
+};
 </script>
 <button onclick="test()">#</button><p>
-<button onclick="PumpOn(symb)">hej</button><p>
+<button onclick="PumpOn()">hej</button><p>
+<button onclick="PumpOff()">hej2</button><p>
 <div id="hej">hej</div>
 <script>
     function test() {
-        $("#hej").text('rerere');
+        var test = 'hej2';
+        $("#hej").text(test);
     };
 </script>
 {%endblock%}
