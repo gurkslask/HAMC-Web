@@ -11,33 +11,20 @@
 <script type=text/javascript src="{{ url_for('bower.static', filename='snap.svg/dist/snap.svg.js') }}"> </script>
 <script type=text/javascript src="{{ url_for('static', filename='svg.js') }}"> </script>
 <script>
-/*
-var s = Snap(120, 120);
-var symb = Snap.load( "{{ url_for('static', filename='pump.svg') }}",  function(f) {
-    t = f.select("#tri");
-    c = f.select("#cirk");
-    s.append(f);
-})();
-
-
-function PumpOn() {
-    t.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
-    c.animate({transform:"", fill:"000000"}, 2000);
-};
-
-function PumpOff() {
-    t.animate({transform:"r0, s2, t9, 9", fill:"#FFFFFF"}, 1000, mina.easeinout);
-    c.animate({transform:"",fill:"FFFFFF"}, 2000);
-};
-*/
 </script>
 <script>
+$(document).ready(function(){
+    setInterval(function(){
+        CP1.checkState(ind);
+    }, 3000);
+});
+//ind = true;
 var CP1 = new pump(1,1,1,1);
 function test() {
     var test = 'hej2';
     $("#hej").text(test);
 };
-CP1.pumpOn();
+//CP1.pumpOn();
 
 </script>
 <button onclick="test()">#</button><p>

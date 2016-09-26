@@ -23,6 +23,13 @@ function pump(x, y, ind, larm){
         t1.animate({transform:"r0, s2, t9, 9", fill:"#FFFFFF"}, 1000, mina.easeinout);
         c1.animate({fill:"#bada55"}, 2000);
     };
+    this.checkState = function() {
+        if this.ind then {
+            this.pumpOn();
+        } else {
+            this.pumpOff();
+        };
+    };
 };
 
                                                                                                            

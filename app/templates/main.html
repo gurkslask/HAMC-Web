@@ -30,11 +30,9 @@
 
 {%block content %}
 
-<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
-</script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-</script>
-
+<script type=text/javascript src="{{ url_for('bower.static',filename='jquery/dist//jquery.js') }}"></script>
+<script type=text/javascript src="{{ url_for('bower.static',filename='snap.svg/dist//snap.svg.js') }}"></script>
+<script type=text/javascript src="{{ url_for('static',filename='svg.js') }}"></script>
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
@@ -113,6 +111,9 @@ $(document).ready(function(){
     </li>
     <li>
         P1 output:<p id="dVS1_CP1_state">?</p>
+        <script>
+            var CP1 = new pump(1,1,1,1);
+        </script>
     </li>
 </ul>
     
