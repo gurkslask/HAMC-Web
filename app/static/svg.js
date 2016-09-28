@@ -14,22 +14,28 @@ function pump(x, y, ind, larm){
 
 
     this.pumpOn = function() {
-        alert('pumpon');
         t1.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
-        c1.animate({fill:"#FFFFFF"}, 2000);
+        c1.animate({fill:"#FFFFFF"}, 200);
     };
     this.pumpOff = function() {
-        alert('pumpoff');
         t1.animate({transform:"r0, s2, t9, 9", fill:"#FFFFFF"}, 1000, mina.easeinout);
-        c1.animate({fill:"#bada55"}, 2000);
+        c1.animate({fill:"#bada55"}, 200);
     };
     this.checkState = function() {
-        if this.ind then {
+        if (this.ind == 1) {
             this.pumpOn();
-        } else {
+        }
+        else {
             this.pumpOff();
-        };
+        }
     };
+    this.setIndOn = function() {
+        this.ind = 1;
+    };
+    this.setIndOff = function() {
+        this.ind = 0;
+    };
+
 };
 
                                                                                                            

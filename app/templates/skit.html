@@ -15,20 +15,28 @@
 <script>
 $(document).ready(function(){
     setInterval(function(){
-        CP1.checkState(ind);
-    }, 3000);
+        CP1.ind = test2;
+        CP1.checkState();
+    }, 300);
 });
 //ind = true;
-var CP1 = new pump(1,1,1,1);
+var CP1 = new pump(1,1,0,1);
 function test() {
     var test = 'hej2';
     $("#hej").text(test);
 };
-//CP1.pumpOn();
-
+function toggleInd() { 
+    if (test2) {
+        test2 = false;
+    } else {
+        test2 = true;
+    }
+};
+var test2 = false;
 </script>
 <button onclick="test()">#</button><p>
-<button onclick="CP1.pumpOn()">hej</button><p>
-<button onclick="CP1.pumpOff()">hej2</button><p>
+<button onclick="CP1.setIndOn()">hej</button><p>
+<button onclick="CP1.setIndOff()">hej2</button><p>
+<button onclick="toggleInd()">hej3</button><p>
 <div id="hej">hej</div>
 {%endblock%}

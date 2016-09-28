@@ -63,6 +63,7 @@ $(document).ready(function(){
     setInterval(function(){
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_CP1|tojson|safe}}, {}, function(data) {
           var Value = data.result.{{dVS1_CP1|safe}}.Out;
+          CP1.ind = Value;
           if (Value == 1) {
             $("#dVS1_CP1_state").text("True");
             $("#dVS1_CP1_state").css("color","Green");
@@ -74,6 +75,7 @@ $(document).ready(function(){
           
           }
       )
+      CP1.checkState();
   }, 3000);
 });
 
@@ -112,7 +114,7 @@ $(document).ready(function(){
     <li>
         P1 output:<p id="dVS1_CP1_state">?</p>
         <script>
-            var CP1 = new pump(1,1,1,1);
+            var CP1 = new pump(1,1,0,1);
         </script>
     </li>
 </ul>
