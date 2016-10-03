@@ -19,12 +19,12 @@ function pump(x, y, ind, larm, name) {
     };
 
     this.pumpOff = function() {
-        //this.x = s.select(this.name).selectAll('circle').attr("cx");
-        //this.y = s.select(this.name).selectAll('circle').attr("cy");
+        this.x = s.select(this.name).selectAll('circle')[0].attr("cx");
+        this.y = s.select(this.name).selectAll('circle')[0].attr("cy");
         t1.animate({transform:"r0, s2, t9, 9", fill:"#FFFFFF"}, 1000, mina.easeinout);
         c1.animate({fill:"#bada55"}, 200);
         s.select(this.name).selectAll('circle').animate({fill:"red"},200);
-        //os.select(this.name).selectAll('path').animate({transform:"r90, t" + this.x + "," + this.y},200);
+        s.select(this.name).selectAll('path').animate({transform:"r90, t" + this.x + "," + this.y},200);
         //console.log("r90, t" + this.x + "," + this.y);
     };
 
