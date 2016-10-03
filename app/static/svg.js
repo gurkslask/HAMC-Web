@@ -1,17 +1,20 @@
-var s = Snap(120, 120);
+var s = Snap(1200, 1200);
 
-function pump(x, y, ind, larm){
+symb = Snap.load( "/static/VS1.svg",  function(f) {
+    t1 = f.select("#tri");
+    c1 = f.select("#cirk");
+    console.log(f.select("#CP2"));
+    s.append(f);
+});
+
+    test.animate({fill:"#FFFFFF"}, 200);
+
+function pump(x, y, ind, larm, name) {
     this.x = x;
     this.y = y;
     this.ind = ind;
     this.larm = larm;
-
-    this.symb = Snap.load( "/static/pump.svg",  function(f) {
-        t1 = f.select("#tri");
-        c1 = f.select("#cirk");
-        s.append(f);
-    });
-
+    this.name =  name;
 
     this.pumpOn = function() {
         t1.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
