@@ -1,30 +1,22 @@
-var s = Snap(1200, 1200);
+var s = Snap(746, 159);
 
 var symb = Snap.load( "/static/VS1.svg",  function(f) {
-    t1 = f.select("#tri");
-    c1 = f.select("#cirk");
-    test = f.select("#CP2")
     s.append(f);
 });
 
 
-function pump(x, y, ind, larm, name) {
+function pump(ind, name) {
     this.ind = ind;
-    this.larm = larm;
-    this.name =  '#CP2';
+    this.name =  name;
+    //this.x = s.select(this.name).selectAll('circle')[0].attr("cx");
+    //Jthis.y = s.select(this.name).selectAll('circle')[0].attr("cy");
 
     this.pumpOn = function() {
-        t1.animate({transform:"r90, s2, t13, -3", fill:"#bada55"}, 1000, mina.easeinout);
-        c1.animate({fill:"#FFFFFF"}, 200);
+        s.select(this.name).selectAll('path').animate({stroke:"#bada55"},200);
     };
 
     this.pumpOff = function() {
-        this.x = s.select(this.name).selectAll('circle')[0].attr("cx");
-        this.y = s.select(this.name).selectAll('circle')[0].attr("cy");
-        //t1.animate({transform:"r0, s2, t9, 9", fill:"#FFFFFF"}, 1000, mina.easeinout);
-        //c1.animate({fill:"#bada55"}, 200);
-        s.select(this.name).selectAll('path').animate({transform:"r90, t123 -60"},200);
-        //console.log("r90, t" + this.x + "," + this.y);
+        s.select(this.name).selectAll('path').animate({stroke:"grey"},200);
     };
 
     this.checkState = function() {
@@ -51,5 +43,13 @@ function pump(x, y, ind, larm, name) {
 
 };
 
+function sensor(name) {
+    this.name = name;
+    this.value = 42;
+
+    this.updateValue = function() {
+        s.select(this.name).selectAll('text').animate({text: this.value}, 200);
+    };
+};
                                                                                                            
 

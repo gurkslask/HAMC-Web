@@ -160,8 +160,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="258.11968"
-     inkscape:cy="142.40158"
+     inkscape:cx="293.72082"
+     inkscape:cy="168.57128"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -182,7 +182,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -287,6 +287,40 @@
          id="tri-6"
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#00ff00;stroke-width:3.00015783;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          sodipodi:type="star" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="414.50958"
+       y="231.01448"
+       id="text8240"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8242"
+         x="414.50958"
+         y="231.01448" /></text>
+    <g
+       id="GT11"
+       transform="translate(38.214286,95)">
+      <rect
+         ry="9.7709351"
+         y="221.36877"
+         x="405.26959"
+         height="19.54187"
+         width="48.827869"
+         id="rect8238"
+         style="fill:#e2e2e2;fill-opacity:1;stroke:#000000;stroke-width:1.17213082;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text8244"
+         y="235.79974"
+         x="412.07184"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="235.79974"
+           x="412.07184"
+           id="tspan8246"
+           sodipodi:role="line">Värde</tspan></text>
     </g>
   </g>
 </svg>

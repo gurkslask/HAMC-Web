@@ -14,29 +14,35 @@
 </script>
 <script>
 $(document).ready(function(){
+    var CP1 = new pump(0, '#CP1');
+    var CP2 = new pump(0, '#CP2');
+    var GT11 = new sensor('#GT11');
     setInterval(function(){
+        console.log(test2);
+        GT11.updateValue();
         CP1.ind = test2;
+        CP2.ind = !test2;
         CP1.checkState();
+        CP2.checkState();
     }, 900);
 });
-//ind = true;
-var CP1 = new pump(1,1,0,1);
 function test() {
     var test = 'hej2';
     $("#hej").text(test);
 };
+var test2 = 0;
 function toggleInd() { 
+    console.log('toggle');
     if (test2) {
         test2 = false;
     } else {
         test2 = true;
     }
 };
-var test2 = false;
 </script>
-<button onclick="test()">#</button><p>
-<button onclick="CP1.setIndOn()">hej</button><p>
-<button onclick="CP1.setIndOff()">hej2</button><p>
-<button onclick="toggleInd()">hej3</button><p>
+<button onclick="test()">#</button>
+<button onclick="CP1.setIndOn()">hej</button>
+<button onclick="CP1.setIndOff()">hej2</button>
+<button onclick="toggleInd()">hej3</button>
 <div id="hej">hej</div>
 {%endblock%}
