@@ -7,6 +7,8 @@ from wtforms.validators import Required
 from bokeh_plot import LoadFromSQL, bk_plot_timeline
 from bokeh.embed import components
 from bokeh.resources import INLINE
+from flask_script import Manager
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 configs = {
@@ -33,16 +35,43 @@ configs = {
     }
 }
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__)
+manager = Manager(app)
 app.config.update(configs[os.environ['FLASK_CONFIG']] or configs['pi_config'])
 PICKLE_LOCATION = '''/home/pi/Projects/HAMC/shared_dict'''
 bootstrap = Bootstrap(app)
 Bower(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db = SQLAlchemy(app)
 if app.config['CONNECT_TO_SOCKET_METHOD'] == 'external':
     from connect_to_socket import call_server
 elif app.config['CONNECT_TO_SOCKET_METHOD'] == 'internal':
     from connect_to_socket_internal import call_server
+
+class h_Object(db.Model):
+    __tablename__ = 'objects'
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, unique = True)
+    value = db.Column(db.Float)
+    limit_id = db.Column(db.Integer, db.ForeignKey('limits.id')) 
+
+    def __repr__(self):
+        return 'Name: {}, Value {}'.format(self.name, self.value)
+
+class sensor_limit(db.Model):
+    __tablename__ = 'limits'
+    id = db.Column(db.Integer, primary_key = True)
+    limit_1_name = (db.String)
+    limit_1_value = (db.Float)
+    objects = db.relationship('h_Object', backref='limit')
+
+    def __repr__(self):
+        return 'Name: {}, Value: {}'.format(self.limit_1_name, self.limit_1_value)
 
 
 @app.route('/bokeh_bild')
@@ -138,5 +167,6 @@ def JsonSharedDict_new_write(dObject=None, value=None):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, debug=app.config['DEBUG'])
+    manager.run()
+    # app.run(host='0.0.0.0', port=5001, debug=app.config['DEBUG'])
     # app.run(host='0.0.0.0')
