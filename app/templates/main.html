@@ -39,10 +39,14 @@
 <script>
 $(document).ready(function(){
     VS1_CP1_O = new pump(0, '#CP1');
-    VS1_GT1_O = new sensor('#VS1_GT1');
+    VS1_GT1_O = new sensor('#VS1_GT1', 'C');
+    VS1_GT2_O = new sensor('#VS1_GT2', 'C');
+    VS1_GT3_O = new sensor('#VS1_GT3', 'C');
     setInterval(function(){
       VS1_CP1_O.checkState();
       VS1_GT1_O.updateValue();
+      VS1_GT2_O.updateValue();
+      VS1_GT3_O.updateValue();
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT1|tojson|safe}}, {}, function(data) {
           $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV);
           VS1_GT1 = data.result.{{dVS1_GT1|safe}}.PV;
@@ -52,6 +56,7 @@ $(document).ready(function(){
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT2|tojson|safe}}, {}, function(data) {
           $("#dVS1_GT2_PV").text(data.result.{{dVS1_GT2|safe}}.PV);
           VS1_GT2 = data.result.{{dVS1_GT2|safe}}.PV;
+          VS1_GT2_O.value = VS1_GT2;
           }
       )
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dThreeDayTemp|tojson|safe}}, {}, function(data) {
@@ -62,6 +67,7 @@ $(document).ready(function(){
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT3|tojson|safe}}, {}, function(data) {
           $("#dVS1_GT3_PV").text(data.result.{{dVS1_GT3|safe}}.PV);
           VS1_GT3 = data.result.{{dVS1_GT3|safe}}.PV;
+          VS1_GT3_O.value = VS1_GT3;
           }
       )
   }, 3000);

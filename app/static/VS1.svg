@@ -10,15 +10,27 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="182.43642mm"
-   height="36.599449mm"
-   viewBox="0 0 646.42825 129.68309"
+   width="646.42828"
+   height="154.46814"
+   viewBox="0 0 646.42831 154.46814"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="VS1.svg">
   <defs
      id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient8187">
+      <stop
+         style="stop-color:#e2e2e2;stop-opacity:1;"
+         offset="0"
+         id="stop8189" />
+      <stop
+         style="stop-color:#e2e2e2;stop-opacity:0;"
+         offset="1"
+         id="stop8191" />
+    </linearGradient>
     <marker
        inkscape:stockid="Arrow2Mend"
        orient="auto"
@@ -151,6 +163,39 @@
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
          transform="scale(-0.6,-0.6)" />
     </marker>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient8187"
+       id="radialGradient8193"
+       cx="472.73709"
+       cy="348.88956"
+       fx="472.73709"
+       fy="348.88956"
+       r="0.5"
+       gradientTransform="matrix(1,0,0,23.035711,0,-7689.1904)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient8187"
+       id="radialGradient8193-8"
+       cx="472.73709"
+       cy="348.88956"
+       fx="472.73709"
+       fy="348.88956"
+       r="0.5"
+       gradientTransform="matrix(1,0,0,9.3986509,0,-2938.1809)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient8187"
+       id="radialGradient8193-8-8"
+       cx="472.73709"
+       cy="348.88956"
+       fx="472.73709"
+       fy="348.88956"
+       r="0.5"
+       gradientTransform="matrix(1,0,0,9.3986509,0,-2938.1809)"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -159,9 +204,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="293.72082"
-     inkscape:cy="168.57128"
+     inkscape:zoom="1.979899"
+     inkscape:cx="326.92642"
+     inkscape:cy="-11.529035"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -173,7 +218,8 @@
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     units="px" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -182,7 +228,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -190,7 +236,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-18.719219,-311.88506)">
+     transform="translate(-18.719219,-287.10001)">
     <use
        id="use7467"
        style="fill:#aaccee;stroke:#000000"
@@ -300,12 +346,11 @@
          x="414.50958"
          y="231.01448" /></text>
     <g
-       id="VS1_GT1"
-       transform="translate(38.214286,95)">
+       id="VS1_GT1">
       <rect
          ry="9.7709351"
-         y="221.36877"
-         x="405.26959"
+         y="316.36877"
+         x="448.30719"
          height="19.54187"
          width="48.827869"
          id="rect8238"
@@ -313,14 +358,108 @@
       <text
          sodipodi:linespacing="125%"
          id="text8244"
-         y="235.79974"
-         x="412.07184"
-         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         y="330.79974"
+         x="473.00494"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><tspan
-           y="235.79974"
-           x="412.07184"
+           y="330.79974"
+           x="473.00494"
            id="tspan8246"
            sodipodi:role="line">Värde</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text8244-9"
+         y="314.87103"
+         x="473.00494"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="314.87103"
+           x="473.00494"
+           id="tspan8174"
+           sodipodi:role="line">Objekt</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path8185"
+         d="m 472.73708,336.21101 0,23.03571"
+         style="fill:url(#radialGradient8193);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.05912185px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="translate(0.56673894,69.234951)"
+       id="VS1_GT2">
+      <rect
+         ry="9.7709351"
+         y="316.36877"
+         x="448.30719"
+         height="19.54187"
+         width="48.827869"
+         id="rect8238-8"
+         style="fill:#e2e2e2;fill-opacity:1;stroke:#000000;stroke-width:1.17213082;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text8244-3"
+         y="330.79974"
+         x="473.00494"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="330.79974"
+           x="473.00494"
+           id="tspan8246-7"
+           sodipodi:role="line">Värde</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text8244-9-9"
+         y="314.87103"
+         x="473.00494"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="314.87103"
+           x="473.00494"
+           id="tspan8174-3"
+           sodipodi:role="line">Objekt</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path8185-7"
+         d="m 472.73708,336.21101 0,9.39865"
+         style="fill:url(#radialGradient8193-8);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.6765157px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="translate(134.41195,-18.273952)"
+       id="VS1_GT3">
+      <rect
+         ry="9.7709351"
+         y="316.36877"
+         x="448.30719"
+         height="19.54187"
+         width="48.827869"
+         id="rect8238-8-9"
+         style="fill:#e2e2e2;fill-opacity:1;stroke:#000000;stroke-width:1.17213082;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text8244-3-0"
+         y="330.79974"
+         x="473.00494"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="330.79974"
+           x="473.00494"
+           id="tspan8246-7-9"
+           sodipodi:role="line">Värde</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text8244-9-9-8"
+         y="314.87103"
+         x="473.00494"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="314.87103"
+           x="473.00494"
+           id="tspan8174-3-8"
+           sodipodi:role="line">Objekt</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path8185-7-5"
+         d="m 472.73708,336.21101 0,9.39865"
+         style="fill:url(#radialGradient8193-8-8);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.6765157px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>
 </svg>

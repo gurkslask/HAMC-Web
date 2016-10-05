@@ -20,7 +20,6 @@ function pump(ind, name) {
     };
 
     this.checkState = function() {
-        console.log(this.ind);
         if (this.ind == 1) {
             this.pumpOn();
         }
@@ -44,12 +43,14 @@ function pump(ind, name) {
 
 };
 
-function sensor(name) {
+function sensor(name, unit) {
     this.name = name;
     this.value = 42;
+    this.unit = unit;
 
     this.updateValue = function() {
-        s.select(this.name).selectAll('text').attr({text: this.value});
+        s.select(this.name).selectAll('text')[0].attr({text: this.value + ' ' + this.unit});
+        s.select(this.name).selectAll('text')[1].attr({text: this.name});
         //s.select(this.name).selectAll('text').animate({text: this.value}, 200);
     };
 };
