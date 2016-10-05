@@ -31,9 +31,9 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1855"
+     inkscape:window-width="1869"
      inkscape:window-height="1056"
-     inkscape:window-x="65"
+     inkscape:window-x="51"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,14 +59,14 @@
      transform="translate(-99.928574,-262.82309)">
     <circle
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000084;stroke-width:3.58361769;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path8068"
+       id="cirk"
        cx="149.92857"
        cy="312.82309"
        r="48.208191" />
     <path
        sodipodi:type="star"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#00ff00;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path9526"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#00ff00;stroke-width:3.00015783;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="tri"
        sodipodi:sides="3"
        sodipodi:cx="137.51173"
        sodipodi:cy="294.79102"
@@ -78,8 +78,8 @@
        inkscape:rounded="0"
        inkscape:randomized="0"
        d="m 159.10456,294.79102 -16.19462,9.34996 -16.19462,9.34997 0,-18.69993 0,-18.69994 16.19462,9.34997 z"
-       inkscape:transform-center-x="-10.585031"
        transform="matrix(1.9608406,0,0,1.8048601,-121.50288,-219.25572)"
-       inkscape:transform-center-y="-1.0715643e-05" />
+       inkscape:transform-center-y="-1.0715643e-05"
+       inkscape:transform-center-x="-10.585031" />
   </g>
 </svg>

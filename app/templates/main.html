@@ -30,31 +30,44 @@
 
 {%block content %}
 
-<script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}">
-</script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-</script>
-
+<script type=text/javascript src="{{ url_for('bower.static',filename='jquery/dist//jquery.js') }}"></script>
+<script type=text/javascript src="{{ url_for('bower.static',filename='snap.svg/dist//snap.svg.js') }}"></script>
+<script type=text/javascript src="{{ url_for('static',filename='svg.js') }}"></script>
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 <script>
 $(document).ready(function(){
+    VS1_CP1_O = new pump(0, '#CP1');
+    VS1_GT1_O = new sensor('#VS1_GT1', 'C');
+    VS1_GT2_O = new sensor('#VS1_GT2', 'C');
+    VS1_GT3_O = new sensor('#VS1_GT3', 'C');
     setInterval(function(){
+      VS1_CP1_O.checkState();
+      VS1_GT1_O.updateValue();
+      VS1_GT2_O.updateValue();
+      VS1_GT3_O.updateValue();
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT1|tojson|safe}}, {}, function(data) {
-          $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV)
+          $("#dVS1_GT1_PV").text(data.result.{{dVS1_GT1|safe}}.PV);
+          VS1_GT1 = data.result.{{dVS1_GT1|safe}}.PV;
+          VS1_GT1_O.value = VS1_GT1;
           }
       )
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT2|tojson|safe}}, {}, function(data) {
-          $("#dVS1_GT2_PV").text(data.result.{{dVS1_GT2|safe}}.PV)
+          $("#dVS1_GT2_PV").text(data.result.{{dVS1_GT2|safe}}.PV);
+          VS1_GT2 = data.result.{{dVS1_GT2|safe}}.PV;
+          VS1_GT2_O.value = VS1_GT2;
           }
       )
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dThreeDayTemp|tojson|safe}}, {}, function(data) {
-          $("#dThreeDayTemp_PV").text(data.result.{{dThreeDayTemp|safe}}.ThreeDayTemp)
+          $("#dThreeDayTemp_PV").text(data.result.{{dThreeDayTemp|safe}}.ThreeDayTemp);
+          threeDayTemp = data.result.{{dThreeDayTemp|safe}}.ThreeDayTemp;
           }
       )
       $.getJSON($SCRIPT_ROOT + '/_JsonSharedDict_new/' + {{dVS1_GT3|tojson|safe}}, {}, function(data) {
-          $("#dVS1_GT3_PV").text(data.result.{{dVS1_GT3|safe}}.PV)
+          $("#dVS1_GT3_PV").text(data.result.{{dVS1_GT3|safe}}.PV);
+          VS1_GT3 = data.result.{{dVS1_GT3|safe}}.PV;
+          VS1_GT3_O.value = VS1_GT3;
           }
       )
   }, 3000);
@@ -68,14 +81,14 @@ $(document).ready(function(){
           if (Value == 1) {
             $("#dVS1_CP1_state").text("True");
             $("#dVS1_CP1_state").css("color","Green");
+            VS1_CP1_O.ind = true;
           }
           else if (Value == 0) {
             $("#dVS1_CP1_state").text("False");
             $("#dVS1_CP1_state").css("color","Black");
+            VS1_CP1_O.ind = false;
           }
-          
-          }
-      )
+      })
   }, 3000);
 });
 
