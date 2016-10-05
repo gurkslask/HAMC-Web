@@ -182,7 +182,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -300,7 +300,7 @@
          x="414.50958"
          y="231.01448" /></text>
     <g
-       id="GT11"
+       id="VS1_GT1"
        transform="translate(38.214286,95)">
       <rect
          ry="9.7709351"

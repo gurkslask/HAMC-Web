@@ -20,6 +20,7 @@ function pump(ind, name) {
     };
 
     this.checkState = function() {
+        console.log(this.ind);
         if (this.ind == 1) {
             this.pumpOn();
         }
@@ -48,7 +49,8 @@ function sensor(name) {
     this.value = 42;
 
     this.updateValue = function() {
-        s.select(this.name).selectAll('text').animate({text: this.value}, 200);
+        s.select(this.name).selectAll('text').attr({text: this.value});
+        //s.select(this.name).selectAll('text').animate({text: this.value}, 200);
     };
 };
                                                                                                            
