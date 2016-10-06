@@ -58,7 +58,8 @@ class h_Object(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, unique = True)
     value = db.Column(db.Float)
-    limit_id = db.Column(db.Integer, db.ForeignKey('limits.id')) 
+    # limit_id = db.Column(db.Integer, db.ForeignKey('limits.id')) 
+    limits =  db.relationship('sensor_limit', backref=objects)
 
     def __repr__(self):
         return 'Name: {}, Value {}'.format(self.name, self.value)
@@ -66,9 +67,10 @@ class h_Object(db.Model):
 class sensor_limit(db.Model):
     __tablename__ = 'limits'
     id = db.Column(db.Integer, primary_key = True)
-    limit_1_name = (db.String)
-    limit_1_value = (db.Float)
-    objects = db.relationship('h_Object', backref='limit')
+    limit_name = (db.String)
+    limit_value = (db.Float)
+    # objects = db.relationship('h_Object', backref='limit')
+    object_id = db.Column(db.Integer, db.ForeignKey('h_Object.id'))
 
     def __repr__(self):
         return 'Name: {}, Value: {}'.format(self.limit_1_name, self.limit_1_value)
