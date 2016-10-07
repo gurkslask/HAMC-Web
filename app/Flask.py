@@ -10,7 +10,7 @@ from bokeh.resources import INLINE
 from flask_script import Manager, Shell
 from flask_sqlalchemy import SQLAlchemy
 import os
-import models
+from models import h_Object, sensor_limit
 
 configs = {
     'pi_config': {
