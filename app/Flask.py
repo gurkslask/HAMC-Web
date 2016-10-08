@@ -10,7 +10,7 @@ from bokeh.resources import INLINE
 from flask_script import Manager, Shell
 from flask_sqlalchemy import SQLAlchemy
 import os
-from models import h_Object, sensor_limit
+from models import *
 
 configs = {
     'pi_config': {
@@ -54,9 +54,9 @@ if app.config['CONNECT_TO_SOCKET_METHOD'] == 'external':
 elif app.config['CONNECT_TO_SOCKET_METHOD'] == 'internal':
     from connect_to_socket_internal import call_server
 
-def make_shell_context():
-    return dict(app=app, db=db, h_Object=models.h_Object, sensor_limit=models.sensor_limit)
-manager.add_command('shell', Shell(make_context=make_shell_context))
+# def make_shell_context():
+    # return dict(app=app, db=db, h_Object=h_Object, sensor_limit=sensor_limit)
+# manager.add_command('shell', Shell(make_context=make_shell_context))
 
 @app.route('/bokeh_bild')
 @app.route('/bokeh_bild/<range>')
